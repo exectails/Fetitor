@@ -58,6 +58,7 @@
     <Compile Include="MyScintilla.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="MySR.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmMain.resx">

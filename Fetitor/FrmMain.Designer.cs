@@ -83,7 +83,6 @@
             this.BtnRedo});
 			this.ToolStrip.Location = new System.Drawing.Point(0, 0);
 			this.ToolStrip.Name = "ToolStrip";
-			this.ToolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
 			this.ToolStrip.Size = new System.Drawing.Size(1008, 25);
 			this.ToolStrip.TabIndex = 2;
 			this.ToolStrip.Text = "toolStrip1";
