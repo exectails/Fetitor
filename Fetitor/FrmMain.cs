@@ -106,6 +106,8 @@ namespace Fetitor
 		private void BtnUndo_Click(object sender, EventArgs e)
 		{
 			editor.Undo();
+			if (!editor.CanUndo)
+				DisableSaving();
 		}
 
 		private void BtnRedo_Click(object sender, EventArgs e)
