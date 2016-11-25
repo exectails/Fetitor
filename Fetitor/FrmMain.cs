@@ -96,9 +96,6 @@ namespace Fetitor
 
 		private void BtnOpen_Click(object sender, EventArgs e)
 		{
-			//OpenFile(@"D:\Mabinogi\mabinogi-data\na\features.xml.compiled");
-			//OpenFile(@"E:\save\mabi\cn_mabinogi_setup_171\package\data\features.xml.compiled");
-
 			var result = OpenFileDialog.ShowDialog();
 			if (result != DialogResult.OK)
 				return;
@@ -134,8 +131,6 @@ namespace Fetitor
 		{
 			if (e.Data.GetDataPresent(DataFormats.FileDrop))
 				e.Effect = DragDropEffects.Copy;
-
-			Console.WriteLine("test");
 		}
 
 		private void OpenFile(string filePath)
