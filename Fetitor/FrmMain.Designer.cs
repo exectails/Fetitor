@@ -42,15 +42,23 @@
 			this.SaveFileDialog = new System.Windows.Forms.SaveFileDialog();
 			this.StatusStrip = new System.Windows.Forms.StatusStrip();
 			this.StatusBarLabel = new System.Windows.Forms.ToolStripStatusLabel();
-			this.TxtEditor = new Fetitor.MyScintilla();
 			this.ToolStrip = new System.Windows.Forms.ToolStrip();
 			this.BtnOpen = new System.Windows.Forms.ToolStripButton();
 			this.BtnSave = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.BtnUndo = new System.Windows.Forms.ToolStripButton();
 			this.BtnRedo = new System.Windows.Forms.ToolStripButton();
+			this.SplMain = new System.Windows.Forms.SplitContainer();
+			this.LstFeatures = new System.Windows.Forms.ListView();
+			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.MenuSaveAsXml = new System.Windows.Forms.MenuItem();
+			this.TxtEditor = new Fetitor.MyScintilla();
 			this.StatusStrip.SuspendLayout();
 			this.ToolStrip.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.SplMain)).BeginInit();
+			this.SplMain.Panel1.SuspendLayout();
+			this.SplMain.Panel2.SuspendLayout();
+			this.SplMain.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// MainMenu
@@ -65,6 +73,7 @@
 			this.menuItem1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.MenuOpen,
             this.MenuSave,
+            this.MenuSaveAsXml,
             this.menuItem5,
             this.MenuExit});
 			this.menuItem1.Text = "&File";
@@ -83,12 +92,12 @@
 			// 
 			// menuItem5
 			// 
-			this.menuItem5.Index = 2;
+			this.menuItem5.Index = 3;
 			this.menuItem5.Text = "-";
 			// 
 			// MenuExit
 			// 
-			this.MenuExit.Index = 3;
+			this.MenuExit.Index = 4;
 			this.MenuExit.Text = "&Exit";
 			this.MenuExit.Click += new System.EventHandler(this.MenuExit_Click);
 			// 
@@ -112,7 +121,7 @@
 			// 
 			this.StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StatusBarLabel});
-			this.StatusStrip.Location = new System.Drawing.Point(0, 587);
+			this.StatusStrip.Location = new System.Drawing.Point(0, 598);
 			this.StatusStrip.Name = "StatusStrip";
 			this.StatusStrip.Size = new System.Drawing.Size(1008, 22);
 			this.StatusStrip.TabIndex = 3;
@@ -123,25 +132,6 @@
 			this.StatusBarLabel.Name = "StatusBarLabel";
 			this.StatusBarLabel.Size = new System.Drawing.Size(59, 17);
 			this.StatusBarLabel.Text = "Status bar";
-			// 
-			// TxtEditor
-			// 
-			this.TxtEditor.AllowDrop = true;
-			this.TxtEditor.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.TxtEditor.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.TxtEditor.HighlightGuide = 0;
-			this.TxtEditor.IndentationGuides = ScintillaNET.IndentView.Real;
-			this.TxtEditor.Location = new System.Drawing.Point(0, 25);
-			this.TxtEditor.Name = "TxtEditor";
-			this.TxtEditor.RectangularSelectionAnchor = 0;
-			this.TxtEditor.RectangularSelectionAnchorVirtualSpace = 0;
-			this.TxtEditor.RectangularSelectionCaret = 0;
-			this.TxtEditor.RectangularSelectionCaretVirtualSpace = 0;
-			this.TxtEditor.ScrollWidth = 100;
-			this.TxtEditor.Size = new System.Drawing.Size(1008, 562);
-			this.TxtEditor.TabIndex = 0;
-			this.TxtEditor.DragDrop += new System.Windows.Forms.DragEventHandler(this.FrmMain_DragDrop);
-			this.TxtEditor.DragEnter += new System.Windows.Forms.DragEventHandler(this.FrmMain_DragEnter);
 			// 
 			// ToolStrip
 			// 
@@ -206,13 +196,78 @@
 			this.BtnRedo.Text = "Redo";
 			this.BtnRedo.Click += new System.EventHandler(this.BtnRedo_Click);
 			// 
+			// SplMain
+			// 
+			this.SplMain.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.SplMain.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+			this.SplMain.IsSplitterFixed = true;
+			this.SplMain.Location = new System.Drawing.Point(0, 25);
+			this.SplMain.Name = "SplMain";
+			// 
+			// SplMain.Panel1
+			// 
+			this.SplMain.Panel1.Controls.Add(this.TxtEditor);
+			// 
+			// SplMain.Panel2
+			// 
+			this.SplMain.Panel2.Controls.Add(this.LstFeatures);
+			this.SplMain.Size = new System.Drawing.Size(1008, 573);
+			this.SplMain.SplitterDistance = 750;
+			this.SplMain.TabIndex = 4;
+			// 
+			// LstFeatures
+			// 
+			this.LstFeatures.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.LstFeatures.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+			this.LstFeatures.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.LstFeatures.FullRowSelect = true;
+			this.LstFeatures.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+			this.LstFeatures.HideSelection = false;
+			this.LstFeatures.Location = new System.Drawing.Point(0, 0);
+			this.LstFeatures.Name = "LstFeatures";
+			this.LstFeatures.Size = new System.Drawing.Size(254, 573);
+			this.LstFeatures.TabIndex = 0;
+			this.LstFeatures.UseCompatibleStateImageBehavior = false;
+			this.LstFeatures.View = System.Windows.Forms.View.Details;
+			this.LstFeatures.DoubleClick += new System.EventHandler(this.LstFeatures_DoubleClick);
+			// 
+			// columnHeader1
+			// 
+			this.columnHeader1.Text = "Name";
+			this.columnHeader1.Width = 100;
+			// 
+			// MenuSaveAsXml
+			// 
+			this.MenuSaveAsXml.Enabled = false;
+			this.MenuSaveAsXml.Index = 2;
+			this.MenuSaveAsXml.Text = "Save as XML...";
+			this.MenuSaveAsXml.Click += new System.EventHandler(this.MenuSaveAsXml_Click);
+			// 
+			// TxtEditor
+			// 
+			this.TxtEditor.AllowDrop = true;
+			this.TxtEditor.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.TxtEditor.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.TxtEditor.HighlightGuide = 0;
+			this.TxtEditor.IndentationGuides = ScintillaNET.IndentView.Real;
+			this.TxtEditor.Location = new System.Drawing.Point(0, 0);
+			this.TxtEditor.Name = "TxtEditor";
+			this.TxtEditor.RectangularSelectionAnchor = 0;
+			this.TxtEditor.RectangularSelectionAnchorVirtualSpace = 0;
+			this.TxtEditor.RectangularSelectionCaret = 0;
+			this.TxtEditor.RectangularSelectionCaretVirtualSpace = 0;
+			this.TxtEditor.ScrollWidth = 100;
+			this.TxtEditor.Size = new System.Drawing.Size(750, 573);
+			this.TxtEditor.TabIndex = 1;
+			// 
 			// FrmMain
 			// 
 			this.AllowDrop = true;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1008, 609);
-			this.Controls.Add(this.TxtEditor);
+			this.ClientSize = new System.Drawing.Size(1008, 620);
+			this.Controls.Add(this.SplMain);
 			this.Controls.Add(this.ToolStrip);
 			this.Controls.Add(this.StatusStrip);
 			this.Menu = this.MainMenu;
@@ -225,6 +280,10 @@
 			this.StatusStrip.PerformLayout();
 			this.ToolStrip.ResumeLayout(false);
 			this.ToolStrip.PerformLayout();
+			this.SplMain.Panel1.ResumeLayout(false);
+			this.SplMain.Panel2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.SplMain)).EndInit();
+			this.SplMain.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -232,7 +291,6 @@
 
 		#endregion
 
-		private MyScintilla TxtEditor;
 		private System.Windows.Forms.ToolStrip ToolStrip;
 		private System.Windows.Forms.ToolStripButton BtnOpen;
 		private System.Windows.Forms.MainMenu MainMenu;
@@ -251,6 +309,11 @@
 		private System.Windows.Forms.SaveFileDialog SaveFileDialog;
 		private System.Windows.Forms.StatusStrip StatusStrip;
 		private System.Windows.Forms.ToolStripStatusLabel StatusBarLabel;
+		private System.Windows.Forms.SplitContainer SplMain;
+		private MyScintilla TxtEditor;
+		private System.Windows.Forms.ListView LstFeatures;
+		private System.Windows.Forms.ColumnHeader columnHeader1;
+		private System.Windows.Forms.MenuItem MenuSaveAsXml;
 	}
 }
 

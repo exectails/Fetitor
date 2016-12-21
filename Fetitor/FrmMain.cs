@@ -14,10 +14,12 @@
 using ScintillaNET;
 using System;
 using System.Drawing;
+using System.Linq;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
+using System.Collections.Generic;
 
 namespace Fetitor
 {
@@ -27,6 +29,9 @@ namespace Fetitor
 		private string _openedFilePath;
 		private bool _fileChanged;
 
+		/// <summary>
+		/// Creates new instance.
+		/// </summary>
 		public FrmMain()
 		{
 			this.InitializeComponent();
@@ -42,6 +47,9 @@ namespace Fetitor
 			this.UpdateSaveButton();
 		}
 
+		/// <summary>
+		/// Sets up the editor for XML code and subscribes to its events.
+		/// </summary>
 		public void SetUpEditor()
 		{
 			this.TxtEditor.Styles[Style.Default].Font = "Courier New";
@@ -56,11 +64,16 @@ namespace Fetitor
 			this.TxtEditor.Styles[Style.Xml.SingleString].ForeColor = Color.Blue;
 			this.TxtEditor.Margins[0].Width = 40;
 			this.TxtEditor.Lexer = Lexer.Xml;
-			this.TxtEditor.TextChanged += this.OnTextChanged;
-			this.TxtEditor.CtrlS += this.OnCtrlS;
+			this.TxtEditor.TextChanged += this.TxtEditor_OnTextChanged;
+			this.TxtEditor.CtrlS += this.TxtEditor_OnCtrlS;
 		}
 
-		private void OnTextChanged(object sender, EventArgs e)
+		/// <summary>
+		/// Called when text in the editor changes.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void TxtEditor_OnTextChanged(object sender, EventArgs e)
 		{
 			_fileChanged = true;
 
@@ -68,30 +81,50 @@ namespace Fetitor
 			this.UpdateSaveButton();
 		}
 
-		private void OnCtrlS(object sender, EventArgs e)
+		/// <summary>
+		/// Called when Ctrl+S is pressed in the editor.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void TxtEditor_OnCtrlS(object sender, EventArgs e)
 		{
 			if (this.BtnSave.Enabled)
 				this.BtnSave.PerformClick();
 		}
 
+		/// <summary>
+		/// Updated Undo and Redo buttons, based on the editor's state.
+		/// </summary>
 		private void UpdateUndo()
 		{
 			this.BtnUndo.Enabled = this.TxtEditor.CanUndo;
 			this.BtnRedo.Enabled = this.TxtEditor.CanRedo;
 		}
 
+		/// <summary>
+		/// Resets Undo and Redo in the editor and updates the buttons.
+		/// </summary>
 		private void ResetUndo()
 		{
 			this.TxtEditor.EmptyUndoBuffer();
-			this.BtnUndo.Enabled = this.BtnRedo.Enabled = false;
+			this.UpdateUndo();
 		}
 
+		/// <summary>
+		/// Toggles save buttons, based on whether saving is possible right
+		/// now.
+		/// </summary>
 		private void UpdateSaveButton()
 		{
 			var enabled = (_fileChanged && !string.IsNullOrWhiteSpace(_openedFilePath));
 			this.MenuSave.Enabled = this.BtnSave.Enabled = enabled;
 		}
 
+		/// <summary>
+		/// Called when one of the Open buttons is clicked.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void BtnOpen_Click(object sender, EventArgs e)
 		{
 			var result = this.OpenFileDialog.ShowDialog();
@@ -101,6 +134,11 @@ namespace Fetitor
 			this.OpenFile(OpenFileDialog.FileName);
 		}
 
+		/// <summary>
+		/// Called if the Undo button is clicked.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void BtnUndo_Click(object sender, EventArgs e)
 		{
 			this.TxtEditor.Undo();
@@ -109,6 +147,11 @@ namespace Fetitor
 			this.UpdateSaveButton();
 		}
 
+		/// <summary>
+		/// Called if the Redo button is clicked.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void BtnRedo_Click(object sender, EventArgs e)
 		{
 			this.TxtEditor.Redo();
@@ -117,11 +160,32 @@ namespace Fetitor
 			this.UpdateSaveButton();
 		}
 
+		/// <summary>
+		/// Called if the Exit menu item is clicked.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void MenuExit_Click(object sender, EventArgs e)
 		{
 			this.Close();
 		}
 
+		/// <summary>
+		/// Called if a file is dragged onto the form.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void FrmMain_DragEnter(object sender, DragEventArgs e)
+		{
+			if (e.Data.GetDataPresent(DataFormats.FileDrop))
+				e.Effect = DragDropEffects.Copy;
+		}
+
+		/// <summary>
+		/// Called if a file is dropped on the form. 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void FrmMain_DragDrop(object sender, DragEventArgs e)
 		{
 			var files = (string[])e.Data.GetData(DataFormats.FileDrop);
@@ -131,12 +195,10 @@ namespace Fetitor
 			this.OpenFile(files[0]);
 		}
 
-		private void FrmMain_DragEnter(object sender, DragEventArgs e)
-		{
-			if (e.Data.GetDataPresent(DataFormats.FileDrop))
-				e.Effect = DragDropEffects.Copy;
-		}
-
+		/// <summary>
+		/// Tries to open compiled XML file at the given path in the editor.
+		/// </summary>
+		/// <param name="filePath"></param>
 		private void OpenFile(string filePath)
 		{
 			// Check file's existence
@@ -172,6 +234,7 @@ namespace Fetitor
 				_fileChanged = false;
 				this.ResetUndo();
 				this.UpdateSaveButton();
+				this.UpdateFeatureList();
 			}
 			catch (InvalidDataException)
 			{
@@ -191,6 +254,11 @@ namespace Fetitor
 			}
 		}
 
+		/// <summary>
+		/// Called if one of the Save buttons is clicked.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void BtnSave_Click(object sender, EventArgs e)
 		{
 			if (string.IsNullOrWhiteSpace(_openedFilePath))
@@ -213,6 +281,10 @@ namespace Fetitor
 			}
 		}
 
+		/// <summary>
+		/// Saves file to given path.
+		/// </summary>
+		/// <param name="filePath"></param>
 		private void SaveFile(string filePath)
 		{
 			using (var fs = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None))
