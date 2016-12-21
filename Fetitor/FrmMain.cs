@@ -37,14 +37,30 @@ namespace Fetitor
 			this.InitializeComponent();
 			this.SetUpEditor();
 
-			if (File.Exists("features.txt"))
-				FeaturesFile.LoadFeatureNames("features.txt");
+			var featuresPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "features.txt");
+			if (File.Exists(featuresPath))
+				FeaturesFile.LoadFeatureNames(featuresPath);
 
 			_windowTitle = Text;
 			this.StatusBarLabel.Text = "";
 			this.ToolStrip.Renderer = new MySR();
 
 			this.UpdateSaveButtons();
+		}
+
+		/// <summary>
+		/// Called when the form loads.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void FrmMain_Load(object sender, EventArgs e)
+		{
+			var args = Environment.GetCommandLineArgs();
+			if (args.Length > 1)
+			{
+				var filePath = args[1];
+				this.OpenFile(filePath);
+			}
 		}
 
 		/// <summary>

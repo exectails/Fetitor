@@ -280,6 +280,7 @@
 			this.Name = "FrmMain";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Fetitor";
+			this.Load += new System.EventHandler(this.FrmMain_Load);
 			this.DragDrop += new System.Windows.Forms.DragEventHandler(this.FrmMain_DragDrop);
 			this.DragEnter += new System.Windows.Forms.DragEventHandler(this.FrmMain_DragEnter);
 			this.StatusStrip.ResumeLayout(false);
