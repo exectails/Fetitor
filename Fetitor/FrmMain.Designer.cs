@@ -38,7 +38,7 @@
 			this.menuItem5 = new System.Windows.Forms.MenuItem();
 			this.MenuExit = new System.Windows.Forms.MenuItem();
 			this.menuItem2 = new System.Windows.Forms.MenuItem();
-			this.menuItem3 = new System.Windows.Forms.MenuItem();
+			this.MenuAbout = new System.Windows.Forms.MenuItem();
 			this.OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.SaveFileDialog = new System.Windows.Forms.SaveFileDialog();
 			this.StatusStrip = new System.Windows.Forms.StatusStrip();
@@ -50,6 +50,7 @@
 			this.BtnUndo = new System.Windows.Forms.ToolStripButton();
 			this.BtnRedo = new System.Windows.Forms.ToolStripButton();
 			this.SplMain = new System.Windows.Forms.SplitContainer();
+			this.TxtEditor = new Fetitor.MyScintilla();
 			this.LstFeatures = new System.Windows.Forms.ListView();
 			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.StatusStrip.SuspendLayout();
@@ -111,17 +112,22 @@
 			// 
 			this.menuItem2.Index = 1;
 			this.menuItem2.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.menuItem3});
+            this.MenuAbout});
 			this.menuItem2.Text = "?";
 			// 
-			// menuItem3
+			// MenuAbout
 			// 
-			this.menuItem3.Index = 0;
-			this.menuItem3.Text = "&About";
+			this.MenuAbout.Index = 0;
+			this.MenuAbout.Text = "&About";
+			this.MenuAbout.Click += new System.EventHandler(this.MenuAbout_Click);
 			// 
 			// OpenFileDialog
 			// 
 			this.OpenFileDialog.Filter = "Compiled XML file|*.xml.compiled";
+			// 
+			// SaveFileDialog
+			// 
+			this.SaveFileDialog.Filter = "XML file|*.xml";
 			// 
 			// StatusStrip
 			// 
@@ -221,6 +227,23 @@
 			this.SplMain.SplitterDistance = 750;
 			this.SplMain.TabIndex = 4;
 			// 
+			// TxtEditor
+			// 
+			this.TxtEditor.AllowDrop = true;
+			this.TxtEditor.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.TxtEditor.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.TxtEditor.HighlightGuide = 0;
+			this.TxtEditor.IndentationGuides = ScintillaNET.IndentView.Real;
+			this.TxtEditor.Location = new System.Drawing.Point(0, 0);
+			this.TxtEditor.Name = "TxtEditor";
+			this.TxtEditor.RectangularSelectionAnchor = 0;
+			this.TxtEditor.RectangularSelectionAnchorVirtualSpace = 0;
+			this.TxtEditor.RectangularSelectionCaret = 0;
+			this.TxtEditor.RectangularSelectionCaretVirtualSpace = 0;
+			this.TxtEditor.ScrollWidth = 100;
+			this.TxtEditor.Size = new System.Drawing.Size(750, 573);
+			this.TxtEditor.TabIndex = 1;
+			// 
 			// LstFeatures
 			// 
 			this.LstFeatures.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -243,30 +266,6 @@
 			this.columnHeader1.Text = "Name";
 			this.columnHeader1.Width = 100;
 			// 
-			// MenuSaveAsXml
-			// 
-			this.MenuSaveAsXml.Enabled = false;
-			this.MenuSaveAsXml.Index = 2;
-			this.MenuSaveAsXml.Text = "Save as XML...";
-			this.MenuSaveAsXml.Click += new System.EventHandler(this.MenuSaveAsXml_Click);
-			// 
-			// TxtEditor
-			// 
-			this.TxtEditor.AllowDrop = true;
-			this.TxtEditor.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.TxtEditor.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.TxtEditor.HighlightGuide = 0;
-			this.TxtEditor.IndentationGuides = ScintillaNET.IndentView.Real;
-			this.TxtEditor.Location = new System.Drawing.Point(0, 0);
-			this.TxtEditor.Name = "TxtEditor";
-			this.TxtEditor.RectangularSelectionAnchor = 0;
-			this.TxtEditor.RectangularSelectionAnchorVirtualSpace = 0;
-			this.TxtEditor.RectangularSelectionCaret = 0;
-			this.TxtEditor.RectangularSelectionCaretVirtualSpace = 0;
-			this.TxtEditor.ScrollWidth = 100;
-			this.TxtEditor.Size = new System.Drawing.Size(750, 573);
-			this.TxtEditor.TabIndex = 1;
-			// 
 			// FrmMain
 			// 
 			this.AllowDrop = true;
@@ -276,6 +275,7 @@
 			this.Controls.Add(this.SplMain);
 			this.Controls.Add(this.ToolStrip);
 			this.Controls.Add(this.StatusStrip);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Menu = this.MainMenu;
 			this.Name = "FrmMain";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -310,7 +310,7 @@
 		private System.Windows.Forms.MenuItem menuItem5;
 		private System.Windows.Forms.MenuItem MenuExit;
 		private System.Windows.Forms.MenuItem menuItem2;
-		private System.Windows.Forms.MenuItem menuItem3;
+		private System.Windows.Forms.MenuItem MenuAbout;
 		private System.Windows.Forms.OpenFileDialog OpenFileDialog;
 		private System.Windows.Forms.SaveFileDialog SaveFileDialog;
 		private System.Windows.Forms.StatusStrip StatusStrip;
