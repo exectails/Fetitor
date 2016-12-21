@@ -53,6 +53,7 @@
 			this.TxtEditor = new Fetitor.MyScintilla();
 			this.LstFeatures = new System.Windows.Forms.ListView();
 			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.TxtFeatureFilter = new System.Windows.Forms.TextBox();
 			this.StatusStrip.SuspendLayout();
 			this.ToolStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.SplMain)).BeginInit();
@@ -223,6 +224,7 @@
 			// SplMain.Panel2
 			// 
 			this.SplMain.Panel2.Controls.Add(this.LstFeatures);
+			this.SplMain.Panel2.Controls.Add(this.TxtFeatureFilter);
 			this.SplMain.Size = new System.Drawing.Size(1008, 573);
 			this.SplMain.SplitterDistance = 750;
 			this.SplMain.TabIndex = 4;
@@ -255,8 +257,8 @@
 			this.LstFeatures.HideSelection = false;
 			this.LstFeatures.Location = new System.Drawing.Point(0, 0);
 			this.LstFeatures.Name = "LstFeatures";
-			this.LstFeatures.Size = new System.Drawing.Size(254, 573);
-			this.LstFeatures.TabIndex = 0;
+			this.LstFeatures.Size = new System.Drawing.Size(254, 553);
+			this.LstFeatures.TabIndex = 2;
 			this.LstFeatures.UseCompatibleStateImageBehavior = false;
 			this.LstFeatures.View = System.Windows.Forms.View.Details;
 			this.LstFeatures.DoubleClick += new System.EventHandler(this.LstFeatures_DoubleClick);
@@ -265,6 +267,19 @@
 			// 
 			this.columnHeader1.Text = "Name";
 			this.columnHeader1.Width = 100;
+			// 
+			// TxtFeatureFilter
+			// 
+			this.TxtFeatureFilter.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.TxtFeatureFilter.ForeColor = System.Drawing.Color.Silver;
+			this.TxtFeatureFilter.Location = new System.Drawing.Point(0, 553);
+			this.TxtFeatureFilter.Name = "TxtFeatureFilter";
+			this.TxtFeatureFilter.Size = new System.Drawing.Size(254, 20);
+			this.TxtFeatureFilter.TabIndex = 3;
+			this.TxtFeatureFilter.Text = "Filter";
+			this.TxtFeatureFilter.Enter += new System.EventHandler(this.TxtFeatureFilter_Enter);
+			this.TxtFeatureFilter.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtFeatureFilter_KeyUp);
+			this.TxtFeatureFilter.Leave += new System.EventHandler(this.TxtFeatureFilter_Leave);
 			// 
 			// FrmMain
 			// 
@@ -289,6 +304,7 @@
 			this.ToolStrip.PerformLayout();
 			this.SplMain.Panel1.ResumeLayout(false);
 			this.SplMain.Panel2.ResumeLayout(false);
+			this.SplMain.Panel2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.SplMain)).EndInit();
 			this.SplMain.ResumeLayout(false);
 			this.ResumeLayout(false);
@@ -318,9 +334,10 @@
 		private System.Windows.Forms.ToolStripStatusLabel StatusBarLabel;
 		private System.Windows.Forms.SplitContainer SplMain;
 		private MyScintilla TxtEditor;
+		private System.Windows.Forms.MenuItem MenuSaveAsXml;
 		private System.Windows.Forms.ListView LstFeatures;
 		private System.Windows.Forms.ColumnHeader columnHeader1;
-		private System.Windows.Forms.MenuItem MenuSaveAsXml;
+		private System.Windows.Forms.TextBox TxtFeatureFilter;
 	}
 }
 

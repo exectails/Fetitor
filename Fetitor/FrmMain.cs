@@ -28,6 +28,7 @@ namespace Fetitor
 		private readonly string _windowTitle;
 		private string _openedFilePath;
 		private bool _fileChanged;
+		private List<ListViewItem> _features = new List<ListViewItem>();
 
 		/// <summary>
 		/// Creates new instance.
@@ -170,18 +171,9 @@ namespace Fetitor
 				list.Add(lvi);
 			}
 
-			this.LstFeatures.BeginUpdate();
-			this.LstFeatures.Items.Clear();
+			_features = list;
 
-			// Add names alphabetically
-			foreach (var item in list.OrderBy(a => a.Text))
-				this.LstFeatures.Items.Add(item);
-
-			// Autosize column header
-			this.LstFeatures.Columns[0].AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
-			this.LstFeatures.Columns[0].Width -= 5;
-
-			this.LstFeatures.EndUpdate();
+			this.PopulateFeatureList(_features);
 		}
 
 		/// <summary>
@@ -409,6 +401,76 @@ namespace Fetitor
 		{
 			var form = new FrmAbout();
 			form.ShowDialog();
+		}
+
+		/// <summary>
+		/// Called if TxtFeatureFilter gets the focus.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void TxtFeatureFilter_Enter(object sender, EventArgs e)
+		{
+			if (this.TxtFeatureFilter.ForeColor == Color.Silver)
+			{
+				this.TxtFeatureFilter.ForeColor = Color.Black;
+				this.TxtFeatureFilter.Text = "";
+			}
+		}
+
+		/// <summary>
+		/// Called if TxtFeatureFilter loses the focus.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void TxtFeatureFilter_Leave(object sender, EventArgs e)
+		{
+			if (string.IsNullOrWhiteSpace(this.TxtFeatureFilter.Text.Trim()))
+			{
+				this.TxtFeatureFilter.ForeColor = Color.Silver;
+				this.TxtFeatureFilter.Text = "Filter";
+				this.FilterFeatures("");
+			}
+		}
+
+		/// <summary>
+		/// Filters the feature list, only showing those that contain
+		/// the given string.
+		/// </summary>
+		/// <param name="filter"></param>
+		private void FilterFeatures(string filter)
+		{
+			this.PopulateFeatureList(_features.Where(a => a.Text.ToUpper().Contains(filter.ToUpper())));
+		}
+
+		/// <summary>
+		/// Fills feature list with the given items.
+		/// </summary>
+		/// <param name="items"></param>
+		private void PopulateFeatureList(IEnumerable<ListViewItem> items)
+		{
+			this.LstFeatures.BeginUpdate();
+			this.LstFeatures.Items.Clear();
+
+			// Add names alphabetically
+			foreach (var item in items.OrderBy(a => a.Text))
+				this.LstFeatures.Items.Add(item);
+
+			// Autosize column header
+			this.LstFeatures.Columns[0].AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
+			this.LstFeatures.Columns[0].Width -= 5;
+
+			this.LstFeatures.EndUpdate();
+		}
+
+		/// <summary>
+		/// Called if a key is let go of in TxtFeatureFilter.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void TxtFeatureFilter_KeyUp(object sender, KeyEventArgs e)
+		{
+			var filter = this.TxtFeatureFilter.Text;
+			this.FilterFeatures(filter);
 		}
 	}
 }
