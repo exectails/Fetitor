@@ -44,7 +44,7 @@ namespace Fetitor
 			this.StatusBarLabel.Text = "";
 			this.ToolStrip.Renderer = new MySR();
 
-			this.UpdateSaveButton();
+			this.UpdateSaveButtons();
 		}
 
 		/// <summary>
@@ -78,7 +78,7 @@ namespace Fetitor
 			_fileChanged = true;
 
 			this.UpdateUndo();
-			this.UpdateSaveButton();
+			this.UpdateSaveButtons();
 		}
 
 		/// <summary>
@@ -114,10 +114,13 @@ namespace Fetitor
 		/// Toggles save buttons, based on whether saving is possible right
 		/// now.
 		/// </summary>
-		private void UpdateSaveButton()
+		private void UpdateSaveButtons()
 		{
 			var enabled = (_fileChanged && !string.IsNullOrWhiteSpace(_openedFilePath));
 			this.MenuSave.Enabled = this.BtnSave.Enabled = enabled;
+
+			var fileOpen = (_openedFilePath != null);
+			this.MenuSaveAsXml.Enabled = fileOpen;
 		}
 
 		/// <summary>
@@ -212,7 +215,7 @@ namespace Fetitor
 			this.TxtEditor.Undo();
 
 			this.UpdateUndo();
-			this.UpdateSaveButton();
+			this.UpdateSaveButtons();
 		}
 
 		/// <summary>
@@ -225,7 +228,7 @@ namespace Fetitor
 			this.TxtEditor.Redo();
 
 			this.UpdateUndo();
-			this.UpdateSaveButton();
+			this.UpdateSaveButtons();
 		}
 
 		/// <summary>
@@ -301,7 +304,7 @@ namespace Fetitor
 
 				_fileChanged = false;
 				this.ResetUndo();
-				this.UpdateSaveButton();
+				this.UpdateSaveButtons();
 				this.UpdateFeatureList();
 			}
 			catch (InvalidDataException)
@@ -337,7 +340,7 @@ namespace Fetitor
 				this.SaveFile(_openedFilePath);
 
 				_fileChanged = false;
-				this.UpdateSaveButton();
+				this.UpdateSaveButtons();
 			}
 			catch (XmlException ex)
 			{
@@ -357,6 +360,39 @@ namespace Fetitor
 		{
 			using (var fs = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None))
 				FeaturesFile.SaveXmlAsCompiled(TxtEditor.Text, fs);
+		}
+
+		/// <summary>
+		/// Called if the Save as XML menu item is clicked.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void MenuSaveAsXml_Click(object sender, EventArgs e)
+		{
+			if (this.SaveFileDialog.ShowDialog() != DialogResult.OK)
+				return;
+
+			try
+			{
+				using (var fs = this.SaveFileDialog.OpenFile())
+				using (var sw = new StreamWriter(fs))
+					sw.Write(this.TxtEditor.Text);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Error: " + ex.ToString(), _windowTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+
+		/// <summary>
+		/// Called if the About menu item is clicked.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void MenuAbout_Click(object sender, EventArgs e)
+		{
+			var form = new FrmAbout();
+			form.ShowDialog();
 		}
 	}
 }

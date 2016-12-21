@@ -34,6 +34,7 @@
 			this.menuItem1 = new System.Windows.Forms.MenuItem();
 			this.MenuOpen = new System.Windows.Forms.MenuItem();
 			this.MenuSave = new System.Windows.Forms.MenuItem();
+			this.MenuSaveAsXml = new System.Windows.Forms.MenuItem();
 			this.menuItem5 = new System.Windows.Forms.MenuItem();
 			this.MenuExit = new System.Windows.Forms.MenuItem();
 			this.menuItem2 = new System.Windows.Forms.MenuItem();
@@ -51,8 +52,6 @@
 			this.SplMain = new System.Windows.Forms.SplitContainer();
 			this.LstFeatures = new System.Windows.Forms.ListView();
 			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.MenuSaveAsXml = new System.Windows.Forms.MenuItem();
-			this.TxtEditor = new Fetitor.MyScintilla();
 			this.StatusStrip.SuspendLayout();
 			this.ToolStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.SplMain)).BeginInit();
@@ -89,6 +88,13 @@
 			this.MenuSave.Enabled = false;
 			this.MenuSave.Index = 1;
 			this.MenuSave.Text = "&Save";
+			// 
+			// MenuSaveAsXml
+			// 
+			this.MenuSaveAsXml.Enabled = false;
+			this.MenuSaveAsXml.Index = 2;
+			this.MenuSaveAsXml.Text = "Save as XML...";
+			this.MenuSaveAsXml.Click += new System.EventHandler(this.MenuSaveAsXml_Click);
 			// 
 			// menuItem5
 			// 
