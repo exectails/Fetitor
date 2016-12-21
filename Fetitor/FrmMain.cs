@@ -57,6 +57,7 @@ namespace Fetitor
 			this.TxtEditor.Margins[0].Width = 40;
 			this.TxtEditor.Lexer = Lexer.Xml;
 			this.TxtEditor.TextChanged += this.OnTextChanged;
+			this.TxtEditor.CtrlS += this.OnCtrlS;
 		}
 
 		private void OnTextChanged(object sender, EventArgs e)
@@ -65,6 +66,12 @@ namespace Fetitor
 
 			this.UpdateUndo();
 			this.UpdateSaveButton();
+		}
+
+		private void OnCtrlS(object sender, EventArgs e)
+		{
+			if (this.BtnSave.Enabled)
+				this.BtnSave.PerformClick();
 		}
 
 		private void UpdateUndo()
