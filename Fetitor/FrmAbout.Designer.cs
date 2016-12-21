@@ -37,9 +37,12 @@
 			this.LblVersion = new System.Windows.Forms.Label();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.LblName = new System.Windows.Forms.Label();
+			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.panel1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -48,32 +51,31 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BackColor = System.Drawing.SystemColors.Control;
+			this.panel1.Controls.Add(this.groupBox2);
 			this.panel1.Controls.Add(this.groupBox1);
 			this.panel1.Controls.Add(this.LblLink);
 			this.panel1.Controls.Add(this.BtnOK);
 			this.panel1.Location = new System.Drawing.Point(0, 59);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(379, 228);
+			this.panel1.Size = new System.Drawing.Size(483, 484);
 			this.panel1.TabIndex = 15;
 			// 
 			// groupBox1
 			// 
-			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
 			this.groupBox1.Controls.Add(this.textBox1);
 			this.groupBox1.Location = new System.Drawing.Point(12, 7);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(355, 184);
+			this.groupBox1.Size = new System.Drawing.Size(459, 159);
 			this.groupBox1.TabIndex = 10;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "License";
 			// 
 			// textBox1
 			// 
-			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox1.BackColor = System.Drawing.SystemColors.Control;
 			this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -81,7 +83,7 @@
 			this.textBox1.Multiline = true;
 			this.textBox1.Name = "textBox1";
 			this.textBox1.ReadOnly = true;
-			this.textBox1.Size = new System.Drawing.Size(339, 159);
+			this.textBox1.Size = new System.Drawing.Size(443, 134);
 			this.textBox1.TabIndex = 3;
 			this.textBox1.Text = resources.GetString("textBox1.Text");
 			// 
@@ -90,7 +92,7 @@
 			this.LblLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.LblLink.AutoSize = true;
 			this.LblLink.BackColor = System.Drawing.Color.Transparent;
-			this.LblLink.Location = new System.Drawing.Point(10, 202);
+			this.LblLink.Location = new System.Drawing.Point(10, 458);
 			this.LblLink.Name = "LblLink";
 			this.LblLink.Size = new System.Drawing.Size(141, 13);
 			this.LblLink.TabIndex = 8;
@@ -101,7 +103,7 @@
 			// BtnOK
 			// 
 			this.BtnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.BtnOK.Location = new System.Drawing.Point(294, 197);
+			this.BtnOK.Location = new System.Drawing.Point(398, 453);
 			this.BtnOK.Name = "BtnOK";
 			this.BtnOK.Size = new System.Drawing.Size(75, 23);
 			this.BtnOK.TabIndex = 7;
@@ -140,11 +142,39 @@
 			this.LblName.TabIndex = 12;
 			this.LblName.Text = "Fetitor";
 			// 
+			// groupBox2
+			// 
+			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.BackColor = System.Drawing.SystemColors.Control;
+			this.groupBox2.Controls.Add(this.textBox2);
+			this.groupBox2.Location = new System.Drawing.Point(14, 172);
+			this.groupBox2.Name = "groupBox2";
+			this.groupBox2.Size = new System.Drawing.Size(459, 272);
+			this.groupBox2.TabIndex = 12;
+			this.groupBox2.TabStop = false;
+			this.groupBox2.Text = "ScintillaNET License";
+			// 
+			// textBox2
+			// 
+			this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox2.BackColor = System.Drawing.SystemColors.Control;
+			this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.textBox2.Location = new System.Drawing.Point(8, 19);
+			this.textBox2.Multiline = true;
+			this.textBox2.Name = "textBox2";
+			this.textBox2.ReadOnly = true;
+			this.textBox2.Size = new System.Drawing.Size(443, 247);
+			this.textBox2.TabIndex = 3;
+			this.textBox2.Text = resources.GetString("textBox2.Text");
+			// 
 			// FrmAbout
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(379, 287);
+			this.ClientSize = new System.Drawing.Size(483, 543);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.LblVersion);
 			this.Controls.Add(this.pictureBox1);
@@ -162,6 +192,8 @@
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			this.groupBox2.ResumeLayout(false);
+			this.groupBox2.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -177,5 +209,7 @@
 		private System.Windows.Forms.Label LblVersion;
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.Label LblName;
+		private System.Windows.Forms.GroupBox groupBox2;
+		private System.Windows.Forms.TextBox textBox2;
 	}
 }
