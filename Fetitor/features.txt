@@ -1,3 +1,7 @@
+// This file contains a number of strings that *could* be feature names.
+// The editor checks every line against the features and uses them as names
+// if they turn out to be valid.
+
 0
 1001
 1002
