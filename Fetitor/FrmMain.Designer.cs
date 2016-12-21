@@ -30,13 +30,6 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
-			this.editor = new Fetitor.MyScintilla();
-			this.ToolStrip = new System.Windows.Forms.ToolStrip();
-			this.BtnOpen = new System.Windows.Forms.ToolStripButton();
-			this.BtnSave = new System.Windows.Forms.ToolStripButton();
-			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-			this.BtnUndo = new System.Windows.Forms.ToolStripButton();
-			this.BtnRedo = new System.Windows.Forms.ToolStripButton();
 			this.MainMenu = new System.Windows.Forms.MainMenu(this.components);
 			this.menuItem1 = new System.Windows.Forms.MenuItem();
 			this.MenuOpen = new System.Windows.Forms.MenuItem();
@@ -49,28 +42,106 @@
 			this.SaveFileDialog = new System.Windows.Forms.SaveFileDialog();
 			this.StatusStrip = new System.Windows.Forms.StatusStrip();
 			this.StatusBarLabel = new System.Windows.Forms.ToolStripStatusLabel();
-			this.ToolStrip.SuspendLayout();
+			this.TxtEditor = new Fetitor.MyScintilla();
+			this.ToolStrip = new System.Windows.Forms.ToolStrip();
+			this.BtnOpen = new System.Windows.Forms.ToolStripButton();
+			this.BtnSave = new System.Windows.Forms.ToolStripButton();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.BtnUndo = new System.Windows.Forms.ToolStripButton();
+			this.BtnRedo = new System.Windows.Forms.ToolStripButton();
 			this.StatusStrip.SuspendLayout();
+			this.ToolStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
-			// editor
+			// MainMenu
 			// 
-			this.editor.AllowDrop = true;
-			this.editor.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.editor.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.editor.HighlightGuide = 0;
-			this.editor.IndentationGuides = ScintillaNET.IndentView.Real;
-			this.editor.Location = new System.Drawing.Point(0, 25);
-			this.editor.Name = "editor";
-			this.editor.RectangularSelectionAnchor = 0;
-			this.editor.RectangularSelectionAnchorVirtualSpace = 0;
-			this.editor.RectangularSelectionCaret = 0;
-			this.editor.RectangularSelectionCaretVirtualSpace = 0;
-			this.editor.ScrollWidth = 100;
-			this.editor.Size = new System.Drawing.Size(1008, 662);
-			this.editor.TabIndex = 0;
-			this.editor.DragDrop += new System.Windows.Forms.DragEventHandler(this.FrmMain_DragDrop);
-			this.editor.DragEnter += new System.Windows.Forms.DragEventHandler(this.FrmMain_DragEnter);
+			this.MainMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem1,
+            this.menuItem2});
+			// 
+			// menuItem1
+			// 
+			this.menuItem1.Index = 0;
+			this.menuItem1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.MenuOpen,
+            this.MenuSave,
+            this.menuItem5,
+            this.MenuExit});
+			this.menuItem1.Text = "&File";
+			// 
+			// MenuOpen
+			// 
+			this.MenuOpen.Index = 0;
+			this.MenuOpen.Text = "&Open";
+			this.MenuOpen.Click += new System.EventHandler(this.BtnOpen_Click);
+			// 
+			// MenuSave
+			// 
+			this.MenuSave.Enabled = false;
+			this.MenuSave.Index = 1;
+			this.MenuSave.Text = "&Save";
+			// 
+			// menuItem5
+			// 
+			this.menuItem5.Index = 2;
+			this.menuItem5.Text = "-";
+			// 
+			// MenuExit
+			// 
+			this.MenuExit.Index = 3;
+			this.MenuExit.Text = "&Exit";
+			this.MenuExit.Click += new System.EventHandler(this.MenuExit_Click);
+			// 
+			// menuItem2
+			// 
+			this.menuItem2.Index = 1;
+			this.menuItem2.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem3});
+			this.menuItem2.Text = "?";
+			// 
+			// menuItem3
+			// 
+			this.menuItem3.Index = 0;
+			this.menuItem3.Text = "&About";
+			// 
+			// OpenFileDialog
+			// 
+			this.OpenFileDialog.Filter = "Compiled XML file|*.xml.compiled";
+			// 
+			// StatusStrip
+			// 
+			this.StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.StatusBarLabel});
+			this.StatusStrip.Location = new System.Drawing.Point(0, 587);
+			this.StatusStrip.Name = "StatusStrip";
+			this.StatusStrip.Size = new System.Drawing.Size(1008, 22);
+			this.StatusStrip.TabIndex = 3;
+			this.StatusStrip.Text = "statusStrip1";
+			// 
+			// StatusBarLabel
+			// 
+			this.StatusBarLabel.Name = "StatusBarLabel";
+			this.StatusBarLabel.Size = new System.Drawing.Size(59, 17);
+			this.StatusBarLabel.Text = "Status bar";
+			// 
+			// TxtEditor
+			// 
+			this.TxtEditor.AllowDrop = true;
+			this.TxtEditor.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.TxtEditor.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.TxtEditor.HighlightGuide = 0;
+			this.TxtEditor.IndentationGuides = ScintillaNET.IndentView.Real;
+			this.TxtEditor.Location = new System.Drawing.Point(0, 25);
+			this.TxtEditor.Name = "TxtEditor";
+			this.TxtEditor.RectangularSelectionAnchor = 0;
+			this.TxtEditor.RectangularSelectionAnchorVirtualSpace = 0;
+			this.TxtEditor.RectangularSelectionCaret = 0;
+			this.TxtEditor.RectangularSelectionCaretVirtualSpace = 0;
+			this.TxtEditor.ScrollWidth = 100;
+			this.TxtEditor.Size = new System.Drawing.Size(1008, 562);
+			this.TxtEditor.TabIndex = 0;
+			this.TxtEditor.DragDrop += new System.Windows.Forms.DragEventHandler(this.FrmMain_DragDrop);
+			this.TxtEditor.DragEnter += new System.Windows.Forms.DragEventHandler(this.FrmMain_DragEnter);
 			// 
 			// ToolStrip
 			// 
@@ -135,84 +206,13 @@
 			this.BtnRedo.Text = "Redo";
 			this.BtnRedo.Click += new System.EventHandler(this.BtnRedo_Click);
 			// 
-			// MainMenu
-			// 
-			this.MainMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.menuItem1,
-            this.menuItem2});
-			// 
-			// menuItem1
-			// 
-			this.menuItem1.Index = 0;
-			this.menuItem1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.MenuOpen,
-            this.MenuSave,
-            this.menuItem5,
-            this.MenuExit});
-			this.menuItem1.Text = "&File";
-			// 
-			// MenuOpen
-			// 
-			this.MenuOpen.Index = 0;
-			this.MenuOpen.Text = "&Open";
-			this.MenuOpen.Click += new System.EventHandler(this.BtnOpen_Click);
-			// 
-			// MenuSave
-			// 
-			this.MenuSave.Enabled = false;
-			this.MenuSave.Index = 1;
-			this.MenuSave.Text = "&Save";
-			// 
-			// menuItem5
-			// 
-			this.menuItem5.Index = 2;
-			this.menuItem5.Text = "-";
-			// 
-			// MenuExit
-			// 
-			this.MenuExit.Index = 3;
-			this.MenuExit.Text = "&Exit";
-			this.MenuExit.Click += new System.EventHandler(this.MenuExit_Click);
-			// 
-			// menuItem2
-			// 
-			this.menuItem2.Index = 1;
-			this.menuItem2.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.menuItem3});
-			this.menuItem2.Text = "?";
-			// 
-			// menuItem3
-			// 
-			this.menuItem3.Index = 0;
-			this.menuItem3.Text = "&About";
-			// 
-			// OpenFileDialog
-			// 
-			this.OpenFileDialog.Filter = "Compiled XML file|*.xml.compiled";
-			// 
-			// StatusStrip
-			// 
-			this.StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.StatusBarLabel});
-			this.StatusStrip.Location = new System.Drawing.Point(0, 687);
-			this.StatusStrip.Name = "StatusStrip";
-			this.StatusStrip.Size = new System.Drawing.Size(1008, 22);
-			this.StatusStrip.TabIndex = 3;
-			this.StatusStrip.Text = "statusStrip1";
-			// 
-			// StatusBarLabel
-			// 
-			this.StatusBarLabel.Name = "StatusBarLabel";
-			this.StatusBarLabel.Size = new System.Drawing.Size(59, 17);
-			this.StatusBarLabel.Text = "Status bar";
-			// 
 			// FrmMain
 			// 
 			this.AllowDrop = true;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1008, 709);
-			this.Controls.Add(this.editor);
+			this.ClientSize = new System.Drawing.Size(1008, 609);
+			this.Controls.Add(this.TxtEditor);
 			this.Controls.Add(this.ToolStrip);
 			this.Controls.Add(this.StatusStrip);
 			this.Menu = this.MainMenu;
@@ -221,10 +221,10 @@
 			this.Text = "Fetitor";
 			this.DragDrop += new System.Windows.Forms.DragEventHandler(this.FrmMain_DragDrop);
 			this.DragEnter += new System.Windows.Forms.DragEventHandler(this.FrmMain_DragEnter);
-			this.ToolStrip.ResumeLayout(false);
-			this.ToolStrip.PerformLayout();
 			this.StatusStrip.ResumeLayout(false);
 			this.StatusStrip.PerformLayout();
+			this.ToolStrip.ResumeLayout(false);
+			this.ToolStrip.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -232,7 +232,7 @@
 
 		#endregion
 
-		private MyScintilla editor;
+		private MyScintilla TxtEditor;
 		private System.Windows.Forms.ToolStrip ToolStrip;
 		private System.Windows.Forms.ToolStripButton BtnOpen;
 		private System.Windows.Forms.MainMenu MainMenu;

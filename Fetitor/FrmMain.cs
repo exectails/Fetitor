@@ -13,13 +13,8 @@
 
 using ScintillaNET;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
@@ -28,96 +23,96 @@ namespace Fetitor
 {
 	public partial class FrmMain : Form
 	{
-		private readonly string windowTitle;
-		private string openedFilePath;
-		private bool fileChanged;
+		private readonly string _windowTitle;
+		private string _openedFilePath;
+		private bool _fileChanged;
 
 		public FrmMain()
 		{
-			InitializeComponent();
-			SetUpEditor();
+			this.InitializeComponent();
+			this.SetUpEditor();
 
 			if (File.Exists("features.txt"))
 				FeaturesFile.LoadFeatureNames("features.txt");
 
-			windowTitle = Text;
-			StatusBarLabel.Text = "";
-			DisableSaving();
+			_windowTitle = Text;
+			this.StatusBarLabel.Text = "";
+			this.ToolStrip.Renderer = new MySR();
+
+			this.UpdateSaveButton();
 		}
 
 		public void SetUpEditor()
 		{
-			editor.Styles[Style.Default].Font = "Courier New";
-			editor.Styles[Style.Default].Size = 10;
-			editor.Styles[Style.Xml.XmlStart].ForeColor = Color.Blue;
-			editor.Styles[Style.Xml.XmlEnd].ForeColor = Color.Blue;
-			editor.Styles[Style.Xml.TagEnd].ForeColor = Color.Blue;
-			editor.Styles[Style.Xml.Tag].ForeColor = Color.Blue;
-			editor.Styles[Style.Xml.TagEnd].ForeColor = Color.Blue;
-			editor.Styles[Style.Xml.Attribute].ForeColor = Color.Red;
-			editor.Styles[Style.Xml.DoubleString].ForeColor = Color.Blue;
-			editor.Styles[Style.Xml.SingleString].ForeColor = Color.Blue;
-			editor.Margins[0].Width = 40;
-			editor.Lexer = Lexer.Xml;
-			editor.TextChanged += OnTextChanged;
+			this.TxtEditor.Styles[Style.Default].Font = "Courier New";
+			this.TxtEditor.Styles[Style.Default].Size = 10;
+			this.TxtEditor.Styles[Style.Xml.XmlStart].ForeColor = Color.Blue;
+			this.TxtEditor.Styles[Style.Xml.XmlEnd].ForeColor = Color.Blue;
+			this.TxtEditor.Styles[Style.Xml.TagEnd].ForeColor = Color.Blue;
+			this.TxtEditor.Styles[Style.Xml.Tag].ForeColor = Color.Blue;
+			this.TxtEditor.Styles[Style.Xml.TagEnd].ForeColor = Color.Blue;
+			this.TxtEditor.Styles[Style.Xml.Attribute].ForeColor = Color.Red;
+			this.TxtEditor.Styles[Style.Xml.DoubleString].ForeColor = Color.Blue;
+			this.TxtEditor.Styles[Style.Xml.SingleString].ForeColor = Color.Blue;
+			this.TxtEditor.Margins[0].Width = 40;
+			this.TxtEditor.Lexer = Lexer.Xml;
+			this.TxtEditor.TextChanged += this.OnTextChanged;
 		}
 
 		private void OnTextChanged(object sender, EventArgs e)
 		{
-			UpdateUndo();
+			_fileChanged = true;
 
-			fileChanged = true;
-			EnableSaving();
+			this.UpdateUndo();
+			this.UpdateSaveButton();
 		}
 
 		private void UpdateUndo()
 		{
-			BtnUndo.Enabled = editor.CanUndo;
-			BtnRedo.Enabled = editor.CanRedo;
+			this.BtnUndo.Enabled = this.TxtEditor.CanUndo;
+			this.BtnRedo.Enabled = this.TxtEditor.CanRedo;
 		}
 
 		private void ResetUndo()
 		{
-			editor.EmptyUndoBuffer();
-			BtnUndo.Enabled = BtnRedo.Enabled = false;
+			this.TxtEditor.EmptyUndoBuffer();
+			this.BtnUndo.Enabled = this.BtnRedo.Enabled = false;
 		}
 
-		private void EnableSaving()
+		private void UpdateSaveButton()
 		{
-			MenuSave.Enabled = true;
-			BtnSave.Enabled = true;
-		}
-
-		private void DisableSaving()
-		{
-			MenuSave.Enabled = false;
-			BtnSave.Enabled = false;
+			var enabled = (_fileChanged && !string.IsNullOrWhiteSpace(_openedFilePath));
+			this.MenuSave.Enabled = this.BtnSave.Enabled = enabled;
 		}
 
 		private void BtnOpen_Click(object sender, EventArgs e)
 		{
-			var result = OpenFileDialog.ShowDialog();
+			var result = this.OpenFileDialog.ShowDialog();
 			if (result != DialogResult.OK)
 				return;
 
-			OpenFile(OpenFileDialog.FileName);
+			this.OpenFile(OpenFileDialog.FileName);
 		}
 
 		private void BtnUndo_Click(object sender, EventArgs e)
 		{
-			editor.Undo();
-			if (!editor.CanUndo)
-				DisableSaving();
+			this.TxtEditor.Undo();
+
+			this.UpdateUndo();
+			this.UpdateSaveButton();
 		}
 
 		private void BtnRedo_Click(object sender, EventArgs e)
 		{
-			editor.Redo();
+			this.TxtEditor.Redo();
+
+			this.UpdateUndo();
+			this.UpdateSaveButton();
 		}
 
 		private void MenuExit_Click(object sender, EventArgs e)
 		{
-			Close();
+			this.Close();
 		}
 
 		private void FrmMain_DragDrop(object sender, DragEventArgs e)
@@ -126,7 +121,7 @@ namespace Fetitor
 			if (files.Length == 0)
 				return;
 
-			OpenFile(files[0]);
+			this.OpenFile(files[0]);
 		}
 
 		private void FrmMain_DragEnter(object sender, DragEventArgs e)
@@ -140,14 +135,14 @@ namespace Fetitor
 			// Check file's existence
 			if (!File.Exists(filePath))
 			{
-				MessageBox.Show("File not found: " + filePath, windowTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("File not found: " + filePath, _windowTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 
 			// Check file extension
 			if (!Path.GetFileName(filePath).EndsWith(".xml.compiled"))
 			{
-				MessageBox.Show("Unknown file type, expected: *.xml.compiled", windowTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("Unknown file type, expected: *.xml.compiled", _windowTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 
@@ -158,69 +153,63 @@ namespace Fetitor
 				using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
 					xml = FeaturesFile.CompiledToXml(fs);
 
-				editor.Text = xml;
+				this.TxtEditor.Text = xml;
+				this.Text = _windowTitle + " - " + filePath;
 
-				Text = windowTitle + " - " + filePath;
-
-				openedFilePath = filePath;
+				_openedFilePath = filePath;
 
 				var known = Regex.Matches(xml, @"Name=""[^\?\""]+""").Count;
 				var total = Regex.Matches(xml, @"Name=""").Count;
-				StatusBarLabel.Text = string.Format("Known: {0}/{1}", known, total);
+				this.StatusBarLabel.Text = string.Format("Known: {0}/{1}", known, total);
 
-				ResetUndo();
-
-				fileChanged = false;
-				DisableSaving();
+				_fileChanged = false;
+				this.ResetUndo();
+				this.UpdateSaveButton();
 			}
 			catch (InvalidDataException)
 			{
-				MessageBox.Show("Invalid file format.", windowTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("Invalid file format.", _windowTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 			catch (EndOfStreamException)
 			{
-				MessageBox.Show("Corrupted file.", windowTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("Corrupted file.", _windowTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 			catch (NotSupportedException)
 			{
-				MessageBox.Show("Unsupported file.", windowTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("Unsupported file.", _windowTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show("Error: " + ex.Message, windowTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("Error: " + ex.Message, _windowTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
 
 		private void BtnSave_Click(object sender, EventArgs e)
 		{
-			if (string.IsNullOrWhiteSpace(openedFilePath))
+			if (string.IsNullOrWhiteSpace(_openedFilePath))
 				return;
 
-			//var result = SaveFileDialog.ShowDialog();
-			//if (result != DialogResult.OK)
-			//	return;
+			try
+			{
+				this.SaveFile(_openedFilePath);
 
-			SaveFile(openedFilePath);
+				_fileChanged = false;
+				this.UpdateSaveButton();
+			}
+			catch (XmlException ex)
+			{
+				MessageBox.Show("XML Error: " + ex.Message, _windowTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Error: " + ex.ToString(), _windowTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
 
 		private void SaveFile(string filePath)
 		{
-			try
-			{
-				using (var fs = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None))
-					FeaturesFile.SaveXmlAsCompiled(editor.Text, fs);
-
-				fileChanged = false;
-				DisableSaving();
-			}
-			catch (XmlException ex)
-			{
-				MessageBox.Show("XML Error: " + ex.Message, windowTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show("Error: " + ex.ToString(), windowTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
+			using (var fs = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None))
+				FeaturesFile.SaveXmlAsCompiled(TxtEditor.Text, fs);
 		}
 	}
 }

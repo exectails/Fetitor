@@ -13,9 +13,6 @@
 
 using ScintillaNET;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Fetitor
@@ -29,7 +26,7 @@ namespace Fetitor
 			switch (keyData)
 			{
 				case Keys.Control | Keys.S:
-					var ev = CtrlS;
+					var ev = this.CtrlS;
 					if (ev != null)
 						ev(this, null);
 					return true;
