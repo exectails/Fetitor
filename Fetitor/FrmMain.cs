@@ -121,6 +121,74 @@ namespace Fetitor
 		}
 
 		/// <summary>
+		/// Updates feature name jump list.
+		/// </summary>
+		private void UpdateFeatureList()
+		{
+			var text = this.TxtEditor.Text;
+
+			var index = text.IndexOf("<Features>");
+			if (index == -1)
+				return;
+
+			var list = new List<ListViewItem>();
+
+			while ((index = text.IndexOf("Name=", index)) != -1)
+			{
+				var nameStartIndex = index + "Name=\"".Length;
+				var nameEndIndex = text.IndexOf("\"", nameStartIndex);
+				var length = nameEndIndex - nameStartIndex;
+
+				index = nameEndIndex;
+
+				var name = text.Substring(nameStartIndex, length);
+				if (name == "?")
+					continue;
+
+				var lvi = new ListViewItem(name);
+				lvi.Tag = new Tuple<int, int>(nameStartIndex, nameEndIndex);
+
+				list.Add(lvi);
+			}
+
+			this.LstFeatures.BeginUpdate();
+			this.LstFeatures.Items.Clear();
+
+			// Add names alphabetically
+			foreach (var item in list.OrderBy(a => a.Text))
+				this.LstFeatures.Items.Add(item);
+
+			// Autosize column header
+			this.LstFeatures.Columns[0].AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
+			this.LstFeatures.Columns[0].Width -= 5;
+
+			this.LstFeatures.EndUpdate();
+		}
+
+		/// <summary>
+		/// Called when feature list is double clicked.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void LstFeatures_DoubleClick(object sender, EventArgs e)
+		{
+			if (this.LstFeatures.SelectedItems.Count == 0)
+				return;
+
+			var selectedItem = this.LstFeatures.SelectedItems[0];
+			if (selectedItem == null || selectedItem.Tag == null)
+				return;
+
+			var indices = selectedItem.Tag as Tuple<int, int>;
+			if (indices == null)
+				return;
+
+			this.TxtEditor.SetSelection(indices.Item1, indices.Item2);
+			this.TxtEditor.ScrollRange(indices.Item1, indices.Item2);
+			this.TxtEditor.Focus();
+		}
+
+		/// <summary>
 		/// Called when one of the Open buttons is clicked.
 		/// </summary>
 		/// <param name="sender"></param>
