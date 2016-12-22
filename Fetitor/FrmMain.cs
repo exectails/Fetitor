@@ -43,7 +43,7 @@ namespace Fetitor
 				FeaturesFile.LoadFeatureNames(featuresPath);
 
 			_windowTitle = Text;
-			this.StatusBarLabel.Text = "";
+			this.LblKnownFeatureCount.Text = "";
 			this.ToolStrip.Renderer = new MySR();
 
 			this.UpdateSaveButtons();
@@ -83,6 +83,25 @@ namespace Fetitor
 			this.TxtEditor.Lexer = Lexer.Xml;
 			this.TxtEditor.TextChanged += this.TxtEditor_OnTextChanged;
 			this.TxtEditor.CtrlS += this.TxtEditor_OnCtrlS;
+			this.TxtEditor.UpdateUI += this.TxtEditor_OnUpdateUI;
+		}
+
+		/// <summary>
+		/// Called if the editor's text or styling have changed.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void TxtEditor_OnUpdateUI(object sender, UpdateUIEventArgs e)
+		{
+			if ((e.Change & UpdateChange.Selection) != 0 || (e.Change & UpdateChange.Content) != 0)
+			{
+				var pos = this.TxtEditor.CurrentPosition;
+				var line = this.TxtEditor.LineFromPosition(pos);
+				var col = (pos - this.TxtEditor.Lines[line].Position);
+
+				this.LblCurLine.Text = "Line " + (line + 1);
+				this.LblCurCol.Text = "Col " + (col + 1);
+			}
 		}
 
 		/// <summary>
@@ -308,7 +327,7 @@ namespace Fetitor
 
 				var known = Regex.Matches(xml, @"Name=""[^\?\""]+""").Count;
 				var total = Regex.Matches(xml, @"Name=""").Count;
-				this.StatusBarLabel.Text = string.Format("Known: {0}/{1}", known, total);
+				this.LblKnownFeatureCount.Text = string.Format("Known features: {0}/{1}", known, total);
 
 				_fileChanged = false;
 				this.ResetUndo();

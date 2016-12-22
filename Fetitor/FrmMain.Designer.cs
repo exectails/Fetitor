@@ -42,7 +42,9 @@
 			this.OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.SaveFileDialog = new System.Windows.Forms.SaveFileDialog();
 			this.StatusStrip = new System.Windows.Forms.StatusStrip();
-			this.StatusBarLabel = new System.Windows.Forms.ToolStripStatusLabel();
+			this.LblCurCol = new System.Windows.Forms.ToolStripStatusLabel();
+			this.LblCurLine = new System.Windows.Forms.ToolStripStatusLabel();
+			this.LblKnownFeatureCount = new System.Windows.Forms.ToolStripStatusLabel();
 			this.ToolStrip = new System.Windows.Forms.ToolStrip();
 			this.BtnOpen = new System.Windows.Forms.ToolStripButton();
 			this.BtnSave = new System.Windows.Forms.ToolStripButton();
@@ -135,18 +137,39 @@
 			// StatusStrip
 			// 
 			this.StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.StatusBarLabel});
-			this.StatusStrip.Location = new System.Drawing.Point(0, 619);
+            this.LblCurLine,
+            this.LblCurCol,
+            this.LblKnownFeatureCount});
+			this.StatusStrip.Location = new System.Drawing.Point(0, 617);
 			this.StatusStrip.Name = "StatusStrip";
-			this.StatusStrip.Size = new System.Drawing.Size(1008, 22);
+			this.StatusStrip.Size = new System.Drawing.Size(1008, 24);
 			this.StatusStrip.TabIndex = 3;
 			this.StatusStrip.Text = "statusStrip1";
 			// 
-			// StatusBarLabel
+			// LblCurCol
 			// 
-			this.StatusBarLabel.Name = "StatusBarLabel";
-			this.StatusBarLabel.Size = new System.Drawing.Size(59, 17);
-			this.StatusBarLabel.Text = "Status bar";
+			this.LblCurCol.AutoSize = false;
+			this.LblCurCol.Name = "LblCurCol";
+			this.LblCurCol.Padding = new System.Windows.Forms.Padding(0, 0, 25, 0);
+			this.LblCurCol.Size = new System.Drawing.Size(60, 19);
+			this.LblCurCol.Text = "Col 0";
+			this.LblCurCol.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// LblCurLine
+			// 
+			this.LblCurLine.AutoSize = false;
+			this.LblCurLine.Name = "LblCurLine";
+			this.LblCurLine.Padding = new System.Windows.Forms.Padding(0, 0, 25, 0);
+			this.LblCurLine.Size = new System.Drawing.Size(60, 19);
+			this.LblCurLine.Text = "Line 0";
+			this.LblCurLine.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// LblKnownFeatureCount
+			// 
+			this.LblKnownFeatureCount.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
+			this.LblKnownFeatureCount.Name = "LblKnownFeatureCount";
+			this.LblKnownFeatureCount.Size = new System.Drawing.Size(126, 19);
+			this.LblKnownFeatureCount.Text = "Known Feature Count";
 			// 
 			// ToolStrip
 			// 
@@ -227,7 +250,7 @@
 			// 
 			this.SplMain.Panel2.Controls.Add(this.LstFeatures);
 			this.SplMain.Panel2.Controls.Add(this.TxtFeatureFilter);
-			this.SplMain.Size = new System.Drawing.Size(1008, 594);
+			this.SplMain.Size = new System.Drawing.Size(1008, 592);
 			this.SplMain.SplitterDistance = 750;
 			this.SplMain.TabIndex = 4;
 			// 
@@ -245,7 +268,7 @@
 			this.TxtEditor.RectangularSelectionCaret = 0;
 			this.TxtEditor.RectangularSelectionCaretVirtualSpace = 0;
 			this.TxtEditor.ScrollWidth = 100;
-			this.TxtEditor.Size = new System.Drawing.Size(750, 594);
+			this.TxtEditor.Size = new System.Drawing.Size(750, 592);
 			this.TxtEditor.TabIndex = 1;
 			// 
 			// LstFeatures
@@ -259,7 +282,7 @@
 			this.LstFeatures.HideSelection = false;
 			this.LstFeatures.Location = new System.Drawing.Point(0, 0);
 			this.LstFeatures.Name = "LstFeatures";
-			this.LstFeatures.Size = new System.Drawing.Size(254, 574);
+			this.LstFeatures.Size = new System.Drawing.Size(254, 572);
 			this.LstFeatures.TabIndex = 2;
 			this.LstFeatures.UseCompatibleStateImageBehavior = false;
 			this.LstFeatures.View = System.Windows.Forms.View.Details;
@@ -274,7 +297,7 @@
 			// 
 			this.TxtFeatureFilter.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.TxtFeatureFilter.ForeColor = System.Drawing.Color.Silver;
-			this.TxtFeatureFilter.Location = new System.Drawing.Point(0, 574);
+			this.TxtFeatureFilter.Location = new System.Drawing.Point(0, 572);
 			this.TxtFeatureFilter.Name = "TxtFeatureFilter";
 			this.TxtFeatureFilter.Size = new System.Drawing.Size(254, 20);
 			this.TxtFeatureFilter.TabIndex = 3;
@@ -333,13 +356,15 @@
 		private System.Windows.Forms.OpenFileDialog OpenFileDialog;
 		private System.Windows.Forms.SaveFileDialog SaveFileDialog;
 		private System.Windows.Forms.StatusStrip StatusStrip;
-		private System.Windows.Forms.ToolStripStatusLabel StatusBarLabel;
+		private System.Windows.Forms.ToolStripStatusLabel LblKnownFeatureCount;
 		private System.Windows.Forms.SplitContainer SplMain;
 		private MyScintilla TxtEditor;
 		private System.Windows.Forms.MenuItem MenuSaveAsXml;
 		private System.Windows.Forms.ListView LstFeatures;
 		private System.Windows.Forms.ColumnHeader columnHeader1;
 		private System.Windows.Forms.TextBox TxtFeatureFilter;
+		private System.Windows.Forms.ToolStripStatusLabel LblCurCol;
+		private System.Windows.Forms.ToolStripStatusLabel LblCurLine;
 	}
 }
 
