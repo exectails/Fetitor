@@ -377,6 +377,9 @@ namespace Fetitor
 		/// <param name="e"></param>
 		private void MenuSaveAsXml_Click(object sender, EventArgs e)
 		{
+			this.SaveFileDialog.InitialDirectory = Path.GetDirectoryName(_openedFilePath);
+			this.SaveFileDialog.FileName = "features.xml";
+
 			if (this.SaveFileDialog.ShowDialog() != DialogResult.OK)
 				return;
 
