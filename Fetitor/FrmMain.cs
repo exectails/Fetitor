@@ -79,6 +79,7 @@ namespace Fetitor
 			this.TxtEditor.Styles[Style.Xml.Attribute].ForeColor = Color.Red;
 			this.TxtEditor.Styles[Style.Xml.DoubleString].ForeColor = Color.Blue;
 			this.TxtEditor.Styles[Style.Xml.SingleString].ForeColor = Color.Blue;
+			this.TxtEditor.Styles[Style.IndentGuide].ForeColor = Color.LightGray;
 			this.TxtEditor.Margins[0].Width = 40;
 			this.TxtEditor.Lexer = Lexer.Xml;
 			this.TxtEditor.TextChanged += this.TxtEditor_OnTextChanged;
