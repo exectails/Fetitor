@@ -82,6 +82,7 @@
 			// MenuOpen
 			// 
 			this.MenuOpen.Index = 0;
+			this.MenuOpen.Shortcut = System.Windows.Forms.Shortcut.CtrlO;
 			this.MenuOpen.Text = "&Open";
 			this.MenuOpen.Click += new System.EventHandler(this.BtnOpen_Click);
 			// 
@@ -89,6 +90,7 @@
 			// 
 			this.MenuSave.Enabled = false;
 			this.MenuSave.Index = 1;
+			this.MenuSave.Shortcut = System.Windows.Forms.Shortcut.CtrlS;
 			this.MenuSave.Text = "&Save";
 			// 
 			// MenuSaveAsXml
@@ -134,7 +136,7 @@
 			// 
 			this.StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StatusBarLabel});
-			this.StatusStrip.Location = new System.Drawing.Point(0, 598);
+			this.StatusStrip.Location = new System.Drawing.Point(0, 619);
 			this.StatusStrip.Name = "StatusStrip";
 			this.StatusStrip.Size = new System.Drawing.Size(1008, 22);
 			this.StatusStrip.TabIndex = 3;
@@ -225,7 +227,7 @@
 			// 
 			this.SplMain.Panel2.Controls.Add(this.LstFeatures);
 			this.SplMain.Panel2.Controls.Add(this.TxtFeatureFilter);
-			this.SplMain.Size = new System.Drawing.Size(1008, 573);
+			this.SplMain.Size = new System.Drawing.Size(1008, 594);
 			this.SplMain.SplitterDistance = 750;
 			this.SplMain.TabIndex = 4;
 			// 
@@ -243,7 +245,7 @@
 			this.TxtEditor.RectangularSelectionCaret = 0;
 			this.TxtEditor.RectangularSelectionCaretVirtualSpace = 0;
 			this.TxtEditor.ScrollWidth = 100;
-			this.TxtEditor.Size = new System.Drawing.Size(750, 573);
+			this.TxtEditor.Size = new System.Drawing.Size(750, 594);
 			this.TxtEditor.TabIndex = 1;
 			// 
 			// LstFeatures
@@ -257,7 +259,7 @@
 			this.LstFeatures.HideSelection = false;
 			this.LstFeatures.Location = new System.Drawing.Point(0, 0);
 			this.LstFeatures.Name = "LstFeatures";
-			this.LstFeatures.Size = new System.Drawing.Size(254, 553);
+			this.LstFeatures.Size = new System.Drawing.Size(254, 574);
 			this.LstFeatures.TabIndex = 2;
 			this.LstFeatures.UseCompatibleStateImageBehavior = false;
 			this.LstFeatures.View = System.Windows.Forms.View.Details;
@@ -272,7 +274,7 @@
 			// 
 			this.TxtFeatureFilter.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.TxtFeatureFilter.ForeColor = System.Drawing.Color.Silver;
-			this.TxtFeatureFilter.Location = new System.Drawing.Point(0, 553);
+			this.TxtFeatureFilter.Location = new System.Drawing.Point(0, 574);
 			this.TxtFeatureFilter.Name = "TxtFeatureFilter";
 			this.TxtFeatureFilter.Size = new System.Drawing.Size(254, 20);
 			this.TxtFeatureFilter.TabIndex = 3;
@@ -286,7 +288,7 @@
 			this.AllowDrop = true;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1008, 620);
+			this.ClientSize = new System.Drawing.Size(1008, 641);
 			this.Controls.Add(this.SplMain);
 			this.Controls.Add(this.ToolStrip);
 			this.Controls.Add(this.StatusStrip);
