@@ -42,8 +42,8 @@
 			this.OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.SaveFileDialog = new System.Windows.Forms.SaveFileDialog();
 			this.StatusStrip = new System.Windows.Forms.StatusStrip();
-			this.LblCurCol = new System.Windows.Forms.ToolStripStatusLabel();
 			this.LblCurLine = new System.Windows.Forms.ToolStripStatusLabel();
+			this.LblCurCol = new System.Windows.Forms.ToolStripStatusLabel();
 			this.LblKnownFeatureCount = new System.Windows.Forms.ToolStripStatusLabel();
 			this.ToolStrip = new System.Windows.Forms.ToolStrip();
 			this.BtnOpen = new System.Windows.Forms.ToolStripButton();
@@ -53,6 +53,7 @@
 			this.BtnRedo = new System.Windows.Forms.ToolStripButton();
 			this.SplMain = new System.Windows.Forms.SplitContainer();
 			this.TxtEditor = new Fetitor.MyScintilla();
+			this.BtnClearFilter = new System.Windows.Forms.Button();
 			this.LstFeatures = new System.Windows.Forms.ListView();
 			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.TxtFeatureFilter = new System.Windows.Forms.TextBox();
@@ -146,15 +147,6 @@
 			this.StatusStrip.TabIndex = 3;
 			this.StatusStrip.Text = "statusStrip1";
 			// 
-			// LblCurCol
-			// 
-			this.LblCurCol.AutoSize = false;
-			this.LblCurCol.Name = "LblCurCol";
-			this.LblCurCol.Padding = new System.Windows.Forms.Padding(0, 0, 25, 0);
-			this.LblCurCol.Size = new System.Drawing.Size(60, 19);
-			this.LblCurCol.Text = "Col 0";
-			this.LblCurCol.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
 			// LblCurLine
 			// 
 			this.LblCurLine.AutoSize = false;
@@ -163,6 +155,15 @@
 			this.LblCurLine.Size = new System.Drawing.Size(60, 19);
 			this.LblCurLine.Text = "Line 0";
 			this.LblCurLine.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// LblCurCol
+			// 
+			this.LblCurCol.AutoSize = false;
+			this.LblCurCol.Name = "LblCurCol";
+			this.LblCurCol.Padding = new System.Windows.Forms.Padding(0, 0, 25, 0);
+			this.LblCurCol.Size = new System.Drawing.Size(60, 19);
+			this.LblCurCol.Text = "Col 0";
+			this.LblCurCol.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// LblKnownFeatureCount
 			// 
@@ -248,10 +249,11 @@
 			// 
 			// SplMain.Panel2
 			// 
+			this.SplMain.Panel2.Controls.Add(this.BtnClearFilter);
 			this.SplMain.Panel2.Controls.Add(this.LstFeatures);
 			this.SplMain.Panel2.Controls.Add(this.TxtFeatureFilter);
 			this.SplMain.Size = new System.Drawing.Size(1008, 592);
-			this.SplMain.SplitterDistance = 750;
+			this.SplMain.SplitterDistance = 730;
 			this.SplMain.TabIndex = 4;
 			// 
 			// TxtEditor
@@ -268,8 +270,20 @@
 			this.TxtEditor.RectangularSelectionCaret = 0;
 			this.TxtEditor.RectangularSelectionCaretVirtualSpace = 0;
 			this.TxtEditor.ScrollWidth = 100;
-			this.TxtEditor.Size = new System.Drawing.Size(750, 592);
+			this.TxtEditor.Size = new System.Drawing.Size(730, 592);
 			this.TxtEditor.TabIndex = 1;
+			// 
+			// BtnClearFilter
+			// 
+			this.BtnClearFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.BtnClearFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.BtnClearFilter.Location = new System.Drawing.Point(255, 574);
+			this.BtnClearFilter.Name = "BtnClearFilter";
+			this.BtnClearFilter.Size = new System.Drawing.Size(18, 18);
+			this.BtnClearFilter.TabIndex = 4;
+			this.BtnClearFilter.Text = "X";
+			this.BtnClearFilter.UseVisualStyleBackColor = true;
+			this.BtnClearFilter.Click += new System.EventHandler(this.BtnClearFilter_Click);
 			// 
 			// LstFeatures
 			// 
@@ -282,7 +296,7 @@
 			this.LstFeatures.HideSelection = false;
 			this.LstFeatures.Location = new System.Drawing.Point(0, 0);
 			this.LstFeatures.Name = "LstFeatures";
-			this.LstFeatures.Size = new System.Drawing.Size(254, 572);
+			this.LstFeatures.Size = new System.Drawing.Size(274, 572);
 			this.LstFeatures.TabIndex = 2;
 			this.LstFeatures.UseCompatibleStateImageBehavior = false;
 			this.LstFeatures.View = System.Windows.Forms.View.Details;
@@ -299,7 +313,7 @@
 			this.TxtFeatureFilter.ForeColor = System.Drawing.Color.Silver;
 			this.TxtFeatureFilter.Location = new System.Drawing.Point(0, 572);
 			this.TxtFeatureFilter.Name = "TxtFeatureFilter";
-			this.TxtFeatureFilter.Size = new System.Drawing.Size(254, 20);
+			this.TxtFeatureFilter.Size = new System.Drawing.Size(274, 20);
 			this.TxtFeatureFilter.TabIndex = 3;
 			this.TxtFeatureFilter.Text = "Filter";
 			this.TxtFeatureFilter.Enter += new System.EventHandler(this.TxtFeatureFilter_Enter);
@@ -317,6 +331,7 @@
 			this.Controls.Add(this.StatusStrip);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Menu = this.MainMenu;
+			this.MinimumSize = new System.Drawing.Size(520, 240);
 			this.Name = "FrmMain";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Fetitor";
@@ -365,6 +380,7 @@
 		private System.Windows.Forms.TextBox TxtFeatureFilter;
 		private System.Windows.Forms.ToolStripStatusLabel LblCurCol;
 		private System.Windows.Forms.ToolStripStatusLabel LblCurLine;
+		private System.Windows.Forms.Button BtnClearFilter;
 	}
 }
 

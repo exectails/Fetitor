@@ -495,5 +495,19 @@ namespace Fetitor
 			var filter = this.TxtFeatureFilter.Text;
 			this.FilterFeatures(filter);
 		}
+
+		/// <summary>
+		/// Called when Clear Filter button is clicked.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void BtnClearFilter_Click(object sender, EventArgs e)
+		{
+			if (!string.IsNullOrWhiteSpace(this.TxtFeatureFilter.Text.Trim()))
+			{
+				this.TxtFeatureFilter.Text = "";
+				this.TxtFeatureFilter_Leave(null, null);
+			}
+		}
 	}
 }
