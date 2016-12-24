@@ -91,6 +91,8 @@
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Search";
+			this.Activated += new System.EventHandler(this.FrmSearch_Activated);
+			this.Deactivate += new System.EventHandler(this.FrmSearch_Deactivate);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

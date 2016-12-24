@@ -38,5 +38,15 @@ namespace Fetitor
 			this.TxtSearchText.Focus();
 			this.TxtSearchText.SelectAll();
 		}
+
+		private void FrmSearch_Deactivate(object sender, EventArgs e)
+		{
+			this.Opacity = 0.5;
+		}
+
+		private void FrmSearch_Activated(object sender, EventArgs e)
+		{
+			this.Opacity = 1;
+		}
 	}
 }
