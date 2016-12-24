@@ -20,16 +20,26 @@ namespace Fetitor
 	class MyScintilla : Scintilla
 	{
 		public event EventHandler CtrlS;
+		public event EventHandler CtrlF;
 
 		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
 		{
 			switch (keyData)
 			{
 				case Keys.Control | Keys.S:
-					var ev = this.CtrlS;
-					if (ev != null)
-						ev(this, null);
-					return true;
+					{
+						var ev = this.CtrlS;
+						if (ev != null)
+							ev(this, null);
+						return true;
+					}
+				case Keys.Control | Keys.F:
+					{
+						var ev = this.CtrlF;
+						if (ev != null)
+							ev(this, null);
+						return true;
+					}
 			}
 
 			return base.ProcessCmdKey(ref msg, keyData);

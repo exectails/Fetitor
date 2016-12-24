@@ -57,6 +57,8 @@
 			this.LstFeatures = new System.Windows.Forms.ListView();
 			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.TxtFeatureFilter = new System.Windows.Forms.TextBox();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.BtnSearch = new System.Windows.Forms.ToolStripButton();
 			this.StatusStrip.SuspendLayout();
 			this.ToolStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.SplMain)).BeginInit();
@@ -180,7 +182,9 @@
             this.BtnSave,
             this.toolStripSeparator1,
             this.BtnUndo,
-            this.BtnRedo});
+            this.BtnRedo,
+            this.toolStripSeparator2,
+            this.BtnSearch});
 			this.ToolStrip.Location = new System.Drawing.Point(0, 0);
 			this.ToolStrip.Name = "ToolStrip";
 			this.ToolStrip.Size = new System.Drawing.Size(1008, 25);
@@ -320,6 +324,21 @@
 			this.TxtFeatureFilter.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtFeatureFilter_KeyUp);
 			this.TxtFeatureFilter.Leave += new System.EventHandler(this.TxtFeatureFilter_Leave);
 			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+			// 
+			// BtnSearch
+			// 
+			this.BtnSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.BtnSearch.Image = ((System.Drawing.Image)(resources.GetObject("BtnSearch.Image")));
+			this.BtnSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.BtnSearch.Name = "BtnSearch";
+			this.BtnSearch.Size = new System.Drawing.Size(23, 22);
+			this.BtnSearch.Text = "Search";
+			this.BtnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
+			// 
 			// FrmMain
 			// 
 			this.AllowDrop = true;
@@ -381,6 +400,8 @@
 		private System.Windows.Forms.ToolStripStatusLabel LblCurCol;
 		private System.Windows.Forms.ToolStripStatusLabel LblCurLine;
 		private System.Windows.Forms.Button BtnClearFilter;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+		private System.Windows.Forms.ToolStripButton BtnSearch;
 	}
 }
 

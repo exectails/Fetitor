@@ -29,6 +29,7 @@ namespace Fetitor
 		private string _openedFilePath;
 		private bool _fileChanged;
 		private List<ListViewItem> _features = new List<ListViewItem>();
+		private FrmSearch _searchForm;
 
 		/// <summary>
 		/// Creates new instance.
@@ -84,7 +85,18 @@ namespace Fetitor
 			this.TxtEditor.Lexer = Lexer.Xml;
 			this.TxtEditor.TextChanged += this.TxtEditor_OnTextChanged;
 			this.TxtEditor.CtrlS += this.TxtEditor_OnCtrlS;
+			this.TxtEditor.CtrlF += this.TxtEditor_OnCtrlF;
 			this.TxtEditor.UpdateUI += this.TxtEditor_OnUpdateUI;
+		}
+
+		/// <summary>
+		/// Called if Ctrl+F is pressed in the editor.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void TxtEditor_OnCtrlF(object sender, EventArgs e)
+		{
+			this.BtnSearch_Click(null, null);
 		}
 
 		/// <summary>
@@ -508,6 +520,59 @@ namespace Fetitor
 				this.TxtFeatureFilter.Text = "";
 				this.TxtFeatureFilter_Leave(null, null);
 			}
+		}
+
+		/// <summary>
+		/// Jumps to the next occurance of given text in editor.
+		/// </summary>
+		/// <param name="searchText">Text to search for, starting at current position.</param>
+		/// <returns>True if text was found, False if not.</returns>
+		public bool SearchFor(string searchText)
+		{
+			var text = this.TxtEditor.Text;
+			var currentPos = this.TxtEditor.CurrentPosition;
+			var selectLength = searchText.Length;
+
+			if (string.IsNullOrEmpty(text))
+				return false;
+
+			currentPos++;
+			if (currentPos > text.Length - 1)
+				currentPos = 0;
+
+			var nextIndex = text.IndexOf(searchText, currentPos, StringComparison.CurrentCultureIgnoreCase);
+			if (nextIndex == -1)
+			{
+				nextIndex = text.IndexOf(searchText, 0, StringComparison.CurrentCultureIgnoreCase);
+				if (nextIndex == -1)
+					return false;
+			}
+
+			this.TxtEditor.SetSelection(nextIndex + selectLength, nextIndex);
+			this.TxtEditor.ScrollRange(nextIndex + selectLength, nextIndex);
+			//this.TxtEditor.Focus();
+
+			return true;
+		}
+
+		/// <summary>
+		/// Called if Search button is clicked, opens Search form.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void BtnSearch_Click(object sender, EventArgs e)
+		{
+			if (_searchForm == null)
+			{
+				_searchForm = new FrmSearch(this);
+
+				var x = this.Location.X + this.Width / 2 - _searchForm.Width / 2;
+				var y = this.Location.Y + this.Height / 2 - _searchForm.Height / 2;
+				_searchForm.Location = new Point(x, y);
+			}
+
+			_searchForm.Show(this);
+			_searchForm.SelectSearchText();
 		}
 	}
 }
