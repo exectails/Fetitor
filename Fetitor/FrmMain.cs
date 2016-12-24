@@ -571,7 +571,11 @@ namespace Fetitor
 				_searchForm.Location = new Point(x, y);
 			}
 
-			_searchForm.Show(this);
+			if (!_searchForm.Visible)
+				_searchForm.Show(this);
+			else
+				_searchForm.Focus();
+
 			_searchForm.SelectSearchText();
 		}
 	}
