@@ -51,14 +51,14 @@
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.BtnUndo = new System.Windows.Forms.ToolStripButton();
 			this.BtnRedo = new System.Windows.Forms.ToolStripButton();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.BtnSearch = new System.Windows.Forms.ToolStripButton();
 			this.SplMain = new System.Windows.Forms.SplitContainer();
 			this.TxtEditor = new Fetitor.MyScintilla();
 			this.BtnClearFilter = new System.Windows.Forms.Button();
 			this.LstFeatures = new System.Windows.Forms.ListView();
 			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.TxtFeatureFilter = new System.Windows.Forms.TextBox();
-			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-			this.BtnSearch = new System.Windows.Forms.ToolStripButton();
 			this.StatusStrip.SuspendLayout();
 			this.ToolStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.SplMain)).BeginInit();
@@ -239,6 +239,21 @@
 			this.BtnRedo.Text = "Redo";
 			this.BtnRedo.Click += new System.EventHandler(this.BtnRedo_Click);
 			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+			// 
+			// BtnSearch
+			// 
+			this.BtnSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.BtnSearch.Image = ((System.Drawing.Image)(resources.GetObject("BtnSearch.Image")));
+			this.BtnSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.BtnSearch.Name = "BtnSearch";
+			this.BtnSearch.Size = new System.Drawing.Size(23, 22);
+			this.BtnSearch.Text = "Search";
+			this.BtnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
+			// 
 			// SplMain
 			// 
 			this.SplMain.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -264,6 +279,8 @@
 			// 
 			this.TxtEditor.AllowDrop = true;
 			this.TxtEditor.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.TxtEditor.CaretLineBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+			this.TxtEditor.CaretLineVisible = true;
 			this.TxtEditor.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.TxtEditor.HighlightGuide = 0;
 			this.TxtEditor.IndentationGuides = ScintillaNET.IndentView.Real;
@@ -323,21 +340,6 @@
 			this.TxtFeatureFilter.Enter += new System.EventHandler(this.TxtFeatureFilter_Enter);
 			this.TxtFeatureFilter.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtFeatureFilter_KeyUp);
 			this.TxtFeatureFilter.Leave += new System.EventHandler(this.TxtFeatureFilter_Leave);
-			// 
-			// toolStripSeparator2
-			// 
-			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-			// 
-			// BtnSearch
-			// 
-			this.BtnSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.BtnSearch.Image = ((System.Drawing.Image)(resources.GetObject("BtnSearch.Image")));
-			this.BtnSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.BtnSearch.Name = "BtnSearch";
-			this.BtnSearch.Size = new System.Drawing.Size(23, 22);
-			this.BtnSearch.Text = "Search";
-			this.BtnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
 			// 
 			// FrmMain
 			// 
