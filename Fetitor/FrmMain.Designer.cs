@@ -37,6 +37,12 @@
 			this.MnuSaveAsXml = new System.Windows.Forms.MenuItem();
 			this.menuItem5 = new System.Windows.Forms.MenuItem();
 			this.MnuExit = new System.Windows.Forms.MenuItem();
+			this.menuItem3 = new System.Windows.Forms.MenuItem();
+			this.MnuUndo = new System.Windows.Forms.MenuItem();
+			this.MnuRedo = new System.Windows.Forms.MenuItem();
+			this.menuItem9 = new System.Windows.Forms.MenuItem();
+			this.MnuSearch = new System.Windows.Forms.MenuItem();
+			this.MnuUpdateFeatures = new System.Windows.Forms.MenuItem();
 			this.menuItem2 = new System.Windows.Forms.MenuItem();
 			this.MnuAbout = new System.Windows.Forms.MenuItem();
 			this.OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -53,13 +59,13 @@
 			this.BtnRedo = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.BtnSearch = new System.Windows.Forms.ToolStripButton();
+			this.BtnUpdateFeatureNames = new System.Windows.Forms.ToolStripButton();
 			this.SplMain = new System.Windows.Forms.SplitContainer();
 			this.TxtEditor = new Fetitor.MyScintilla();
 			this.BtnClearFilter = new System.Windows.Forms.Button();
 			this.LstFeatures = new System.Windows.Forms.ListView();
 			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.TxtFeatureFilter = new System.Windows.Forms.TextBox();
-			this.BtnUpdateFeatureNames = new System.Windows.Forms.ToolStripButton();
 			this.StatusStrip.SuspendLayout();
 			this.ToolStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.SplMain)).BeginInit();
@@ -72,6 +78,7 @@
 			// 
 			this.MainMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuItem1,
+            this.menuItem3,
             this.menuItem2});
 			// 
 			// menuItem1
@@ -83,13 +90,13 @@
             this.MnuSaveAsXml,
             this.menuItem5,
             this.MnuExit});
-			this.menuItem1.Text = "&File";
+			this.menuItem1.Text = "File";
 			// 
 			// MnuOpen
 			// 
 			this.MnuOpen.Index = 0;
 			this.MnuOpen.Shortcut = System.Windows.Forms.Shortcut.CtrlO;
-			this.MnuOpen.Text = "&Open";
+			this.MnuOpen.Text = "Open...";
 			this.MnuOpen.Click += new System.EventHandler(this.BtnOpen_Click);
 			// 
 			// MnuSave
@@ -97,7 +104,7 @@
 			this.MnuSave.Enabled = false;
 			this.MnuSave.Index = 1;
 			this.MnuSave.Shortcut = System.Windows.Forms.Shortcut.CtrlS;
-			this.MnuSave.Text = "&Save";
+			this.MnuSave.Text = "Save";
 			this.MnuSave.Click += new System.EventHandler(this.BtnSave_Click);
 			// 
 			// MnuSaveAsXml
@@ -115,12 +122,55 @@
 			// MnuExit
 			// 
 			this.MnuExit.Index = 4;
-			this.MnuExit.Text = "&Exit";
+			this.MnuExit.Text = "Exit";
 			this.MnuExit.Click += new System.EventHandler(this.MenuExit_Click);
+			// 
+			// menuItem3
+			// 
+			this.menuItem3.Index = 1;
+			this.menuItem3.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.MnuUndo,
+            this.MnuRedo,
+            this.menuItem9,
+            this.MnuSearch,
+            this.MnuUpdateFeatures});
+			this.menuItem3.Text = "Edit";
+			// 
+			// MnuUndo
+			// 
+			this.MnuUndo.Index = 0;
+			this.MnuUndo.Shortcut = System.Windows.Forms.Shortcut.CtrlZ;
+			this.MnuUndo.Text = "Undo";
+			this.MnuUndo.Click += new System.EventHandler(this.BtnUndo_Click);
+			// 
+			// MnuRedo
+			// 
+			this.MnuRedo.Index = 1;
+			this.MnuRedo.Shortcut = System.Windows.Forms.Shortcut.CtrlY;
+			this.MnuRedo.Text = "Redo";
+			this.MnuRedo.Click += new System.EventHandler(this.BtnRedo_Click);
+			// 
+			// menuItem9
+			// 
+			this.menuItem9.Index = 2;
+			this.menuItem9.Text = "-";
+			// 
+			// MnuSearch
+			// 
+			this.MnuSearch.Index = 3;
+			this.MnuSearch.Shortcut = System.Windows.Forms.Shortcut.CtrlF;
+			this.MnuSearch.Text = "Search";
+			this.MnuSearch.Click += new System.EventHandler(this.BtnSearch_Click);
+			// 
+			// MnuUpdateFeatures
+			// 
+			this.MnuUpdateFeatures.Index = 4;
+			this.MnuUpdateFeatures.Text = "Update Feature Names";
+			this.MnuUpdateFeatures.Click += new System.EventHandler(this.BtnUpdateFeatureNames_Click);
 			// 
 			// menuItem2
 			// 
-			this.menuItem2.Index = 1;
+			this.menuItem2.Index = 2;
 			this.menuItem2.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.MnuAbout});
 			this.menuItem2.Text = "?";
@@ -128,7 +178,7 @@
 			// MnuAbout
 			// 
 			this.MnuAbout.Index = 0;
-			this.MnuAbout.Text = "&About";
+			this.MnuAbout.Text = "About";
 			this.MnuAbout.Click += new System.EventHandler(this.MenuAbout_Click);
 			// 
 			// OpenFileDialog
@@ -145,7 +195,7 @@
             this.LblCurLine,
             this.LblCurCol,
             this.LblKnownFeatureCount});
-			this.StatusStrip.Location = new System.Drawing.Point(0, 617);
+			this.StatusStrip.Location = new System.Drawing.Point(0, 556);
 			this.StatusStrip.Name = "StatusStrip";
 			this.StatusStrip.Size = new System.Drawing.Size(1008, 24);
 			this.StatusStrip.TabIndex = 3;
@@ -202,7 +252,7 @@
 			this.BtnOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.BtnOpen.Name = "BtnOpen";
 			this.BtnOpen.Size = new System.Drawing.Size(23, 22);
-			this.BtnOpen.Text = "Open";
+			this.BtnOpen.Text = "Open...";
 			this.BtnOpen.Click += new System.EventHandler(this.BtnOpen_Click);
 			// 
 			// BtnSave
@@ -258,6 +308,16 @@
 			this.BtnSearch.Text = "Search";
 			this.BtnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
 			// 
+			// BtnUpdateFeatureNames
+			// 
+			this.BtnUpdateFeatureNames.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.BtnUpdateFeatureNames.Image = ((System.Drawing.Image)(resources.GetObject("BtnUpdateFeatureNames.Image")));
+			this.BtnUpdateFeatureNames.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.BtnUpdateFeatureNames.Name = "BtnUpdateFeatureNames";
+			this.BtnUpdateFeatureNames.Size = new System.Drawing.Size(23, 22);
+			this.BtnUpdateFeatureNames.Text = "Update Feature Names";
+			this.BtnUpdateFeatureNames.Click += new System.EventHandler(this.BtnUpdateFeatureNames_Click);
+			// 
 			// SplMain
 			// 
 			this.SplMain.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -275,7 +335,7 @@
 			this.SplMain.Panel2.Controls.Add(this.BtnClearFilter);
 			this.SplMain.Panel2.Controls.Add(this.LstFeatures);
 			this.SplMain.Panel2.Controls.Add(this.TxtFeatureFilter);
-			this.SplMain.Size = new System.Drawing.Size(1008, 592);
+			this.SplMain.Size = new System.Drawing.Size(1008, 531);
 			this.SplMain.SplitterDistance = 730;
 			this.SplMain.TabIndex = 4;
 			// 
@@ -295,14 +355,14 @@
 			this.TxtEditor.RectangularSelectionCaret = 0;
 			this.TxtEditor.RectangularSelectionCaretVirtualSpace = 0;
 			this.TxtEditor.ScrollWidth = 100;
-			this.TxtEditor.Size = new System.Drawing.Size(730, 592);
+			this.TxtEditor.Size = new System.Drawing.Size(730, 531);
 			this.TxtEditor.TabIndex = 1;
 			// 
 			// BtnClearFilter
 			// 
 			this.BtnClearFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.BtnClearFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.BtnClearFilter.Location = new System.Drawing.Point(255, 574);
+			this.BtnClearFilter.Location = new System.Drawing.Point(255, 513);
 			this.BtnClearFilter.Name = "BtnClearFilter";
 			this.BtnClearFilter.Size = new System.Drawing.Size(18, 18);
 			this.BtnClearFilter.TabIndex = 4;
@@ -321,7 +381,7 @@
 			this.LstFeatures.HideSelection = false;
 			this.LstFeatures.Location = new System.Drawing.Point(0, 0);
 			this.LstFeatures.Name = "LstFeatures";
-			this.LstFeatures.Size = new System.Drawing.Size(274, 572);
+			this.LstFeatures.Size = new System.Drawing.Size(274, 511);
 			this.LstFeatures.TabIndex = 2;
 			this.LstFeatures.UseCompatibleStateImageBehavior = false;
 			this.LstFeatures.View = System.Windows.Forms.View.Details;
@@ -336,7 +396,7 @@
 			// 
 			this.TxtFeatureFilter.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.TxtFeatureFilter.ForeColor = System.Drawing.Color.Silver;
-			this.TxtFeatureFilter.Location = new System.Drawing.Point(0, 572);
+			this.TxtFeatureFilter.Location = new System.Drawing.Point(0, 511);
 			this.TxtFeatureFilter.Name = "TxtFeatureFilter";
 			this.TxtFeatureFilter.Size = new System.Drawing.Size(274, 20);
 			this.TxtFeatureFilter.TabIndex = 3;
@@ -345,22 +405,12 @@
 			this.TxtFeatureFilter.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtFeatureFilter_KeyUp);
 			this.TxtFeatureFilter.Leave += new System.EventHandler(this.TxtFeatureFilter_Leave);
 			// 
-			// BtnUpdateFeatureNames
-			// 
-			this.BtnUpdateFeatureNames.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.BtnUpdateFeatureNames.Image = ((System.Drawing.Image)(resources.GetObject("BtnUpdateFeatureNames.Image")));
-			this.BtnUpdateFeatureNames.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.BtnUpdateFeatureNames.Name = "BtnUpdateFeatureNames";
-			this.BtnUpdateFeatureNames.Size = new System.Drawing.Size(23, 22);
-			this.BtnUpdateFeatureNames.Text = "Update Feature Names";
-			this.BtnUpdateFeatureNames.Click += new System.EventHandler(this.BtnUpdateFeatureNames_Click);
-			// 
 			// FrmMain
 			// 
 			this.AllowDrop = true;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1008, 641);
+			this.ClientSize = new System.Drawing.Size(1008, 580);
 			this.Controls.Add(this.SplMain);
 			this.Controls.Add(this.ToolStrip);
 			this.Controls.Add(this.StatusStrip);
@@ -420,6 +470,12 @@
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
 		private System.Windows.Forms.ToolStripButton BtnSearch;
 		private System.Windows.Forms.ToolStripButton BtnUpdateFeatureNames;
+		private System.Windows.Forms.MenuItem menuItem3;
+		private System.Windows.Forms.MenuItem MnuUndo;
+		private System.Windows.Forms.MenuItem MnuRedo;
+		private System.Windows.Forms.MenuItem menuItem9;
+		private System.Windows.Forms.MenuItem MnuSearch;
+		private System.Windows.Forms.MenuItem MnuUpdateFeatures;
 	}
 }
 
