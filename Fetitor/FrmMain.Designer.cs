@@ -32,13 +32,13 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
 			this.MainMenu = new System.Windows.Forms.MainMenu(this.components);
 			this.menuItem1 = new System.Windows.Forms.MenuItem();
-			this.MenuOpen = new System.Windows.Forms.MenuItem();
-			this.MenuSave = new System.Windows.Forms.MenuItem();
-			this.MenuSaveAsXml = new System.Windows.Forms.MenuItem();
+			this.MnuOpen = new System.Windows.Forms.MenuItem();
+			this.MnuSave = new System.Windows.Forms.MenuItem();
+			this.MnuSaveAsXml = new System.Windows.Forms.MenuItem();
 			this.menuItem5 = new System.Windows.Forms.MenuItem();
-			this.MenuExit = new System.Windows.Forms.MenuItem();
+			this.MnuExit = new System.Windows.Forms.MenuItem();
 			this.menuItem2 = new System.Windows.Forms.MenuItem();
-			this.MenuAbout = new System.Windows.Forms.MenuItem();
+			this.MnuAbout = new System.Windows.Forms.MenuItem();
 			this.OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.SaveFileDialog = new System.Windows.Forms.SaveFileDialog();
 			this.StatusStrip = new System.Windows.Forms.StatusStrip();
@@ -77,57 +77,57 @@
 			// 
 			this.menuItem1.Index = 0;
 			this.menuItem1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.MenuOpen,
-            this.MenuSave,
-            this.MenuSaveAsXml,
+            this.MnuOpen,
+            this.MnuSave,
+            this.MnuSaveAsXml,
             this.menuItem5,
-            this.MenuExit});
+            this.MnuExit});
 			this.menuItem1.Text = "&File";
 			// 
-			// MenuOpen
+			// MnuOpen
 			// 
-			this.MenuOpen.Index = 0;
-			this.MenuOpen.Shortcut = System.Windows.Forms.Shortcut.CtrlO;
-			this.MenuOpen.Text = "&Open";
-			this.MenuOpen.Click += new System.EventHandler(this.BtnOpen_Click);
+			this.MnuOpen.Index = 0;
+			this.MnuOpen.Shortcut = System.Windows.Forms.Shortcut.CtrlO;
+			this.MnuOpen.Text = "&Open";
+			this.MnuOpen.Click += new System.EventHandler(this.BtnOpen_Click);
 			// 
-			// MenuSave
+			// MnuSave
 			// 
-			this.MenuSave.Enabled = false;
-			this.MenuSave.Index = 1;
-			this.MenuSave.Shortcut = System.Windows.Forms.Shortcut.CtrlS;
-			this.MenuSave.Text = "&Save";
+			this.MnuSave.Enabled = false;
+			this.MnuSave.Index = 1;
+			this.MnuSave.Shortcut = System.Windows.Forms.Shortcut.CtrlS;
+			this.MnuSave.Text = "&Save";
 			// 
-			// MenuSaveAsXml
+			// MnuSaveAsXml
 			// 
-			this.MenuSaveAsXml.Enabled = false;
-			this.MenuSaveAsXml.Index = 2;
-			this.MenuSaveAsXml.Text = "Save as XML...";
-			this.MenuSaveAsXml.Click += new System.EventHandler(this.MenuSaveAsXml_Click);
+			this.MnuSaveAsXml.Enabled = false;
+			this.MnuSaveAsXml.Index = 2;
+			this.MnuSaveAsXml.Text = "Save as XML...";
+			this.MnuSaveAsXml.Click += new System.EventHandler(this.MenuSaveAsXml_Click);
 			// 
 			// menuItem5
 			// 
 			this.menuItem5.Index = 3;
 			this.menuItem5.Text = "-";
 			// 
-			// MenuExit
+			// MnuExit
 			// 
-			this.MenuExit.Index = 4;
-			this.MenuExit.Text = "&Exit";
-			this.MenuExit.Click += new System.EventHandler(this.MenuExit_Click);
+			this.MnuExit.Index = 4;
+			this.MnuExit.Text = "&Exit";
+			this.MnuExit.Click += new System.EventHandler(this.MenuExit_Click);
 			// 
 			// menuItem2
 			// 
 			this.menuItem2.Index = 1;
 			this.menuItem2.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.MenuAbout});
+            this.MnuAbout});
 			this.menuItem2.Text = "?";
 			// 
-			// MenuAbout
+			// MnuAbout
 			// 
-			this.MenuAbout.Index = 0;
-			this.MenuAbout.Text = "&About";
-			this.MenuAbout.Click += new System.EventHandler(this.MenuAbout_Click);
+			this.MnuAbout.Index = 0;
+			this.MnuAbout.Text = "&About";
+			this.MnuAbout.Click += new System.EventHandler(this.MenuAbout_Click);
 			// 
 			// OpenFileDialog
 			// 
@@ -187,6 +187,7 @@
             this.BtnSearch});
 			this.ToolStrip.Location = new System.Drawing.Point(0, 0);
 			this.ToolStrip.Name = "ToolStrip";
+			this.ToolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
 			this.ToolStrip.Size = new System.Drawing.Size(1008, 25);
 			this.ToolStrip.TabIndex = 2;
 			this.ToolStrip.Text = "toolStrip1";
@@ -383,19 +384,19 @@
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.ToolStripButton BtnUndo;
 		private System.Windows.Forms.ToolStripButton BtnRedo;
-		private System.Windows.Forms.MenuItem MenuOpen;
-		private System.Windows.Forms.MenuItem MenuSave;
+		private System.Windows.Forms.MenuItem MnuOpen;
+		private System.Windows.Forms.MenuItem MnuSave;
 		private System.Windows.Forms.MenuItem menuItem5;
-		private System.Windows.Forms.MenuItem MenuExit;
+		private System.Windows.Forms.MenuItem MnuExit;
 		private System.Windows.Forms.MenuItem menuItem2;
-		private System.Windows.Forms.MenuItem MenuAbout;
+		private System.Windows.Forms.MenuItem MnuAbout;
 		private System.Windows.Forms.OpenFileDialog OpenFileDialog;
 		private System.Windows.Forms.SaveFileDialog SaveFileDialog;
 		private System.Windows.Forms.StatusStrip StatusStrip;
 		private System.Windows.Forms.ToolStripStatusLabel LblKnownFeatureCount;
 		private System.Windows.Forms.SplitContainer SplMain;
 		private MyScintilla TxtEditor;
-		private System.Windows.Forms.MenuItem MenuSaveAsXml;
+		private System.Windows.Forms.MenuItem MnuSaveAsXml;
 		private System.Windows.Forms.ListView LstFeatures;
 		private System.Windows.Forms.ColumnHeader columnHeader1;
 		private System.Windows.Forms.TextBox TxtFeatureFilter;

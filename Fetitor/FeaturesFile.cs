@@ -19,28 +19,47 @@ using System.Xml;
 
 namespace Fetitor
 {
+	/// <summary>
+	/// Represents "Setting" entry in "features.xml.compiled".
+	/// </summary>
+	public class FeaturesSetting
+	{
+		public bool Development;
+		public byte Generation;
+		public string Locale = "";
+		public string Name = "";
+		public byte Season;
+		public byte Subseason;
+		public bool Test;
+	}
+
+	/// <summary>
+	/// Represents "Feature" entry in "features.xml.compiled".
+	/// </summary>
+	public class FeaturesFeature
+	{
+		public string Default = "";
+		public string Disable = "";
+		public string Enable = "";
+		public uint Hash;
+		public string Name;
+	}
+
+	/// <summary>
+	/// Reader and writer for features.xml(.compiled).
+	/// </summary>
 	public class FeaturesFile
 	{
-		private List<FeaturesSetting> settings;
-		private List<FeaturesFeature> features;
+		private List<FeaturesSetting> settings = new List<FeaturesSetting>();
+		private List<FeaturesFeature> features = new List<FeaturesFeature>();
 
-		private static Dictionary<uint, string> featureNames;
+		private static Dictionary<uint, string> featureNames = new Dictionary<uint, string>();
 
 		/// <summary>
 		/// Creates new FeaturesFile.
 		/// </summary>
-		private FeaturesFile()
+		public FeaturesFile()
 		{
-			settings = new List<FeaturesSetting>();
-			features = new List<FeaturesFeature>();
-		}
-
-		/// <summary>
-		/// Static initialization.
-		/// </summary>
-		static FeaturesFile()
-		{
-			featureNames = new Dictionary<uint, string>();
 		}
 
 		/// <summary>
@@ -48,7 +67,6 @@ namespace Fetitor
 		/// </summary>
 		/// <param name="filePath"></param>
 		private FeaturesFile(string filePath)
-			: this()
 		{
 			if (!File.Exists(filePath))
 				throw new FileNotFoundException("File not found: " + filePath);
@@ -173,7 +191,6 @@ namespace Fetitor
 			using (var ms = new MemoryStream())
 			{
 				this.SaveAsXml(ms);
-
 				return Encoding.UTF8.GetString(ms.ToArray());
 			}
 		}
@@ -190,7 +207,7 @@ namespace Fetitor
 		}
 
 		/// <summary>
-		/// Returns compiled features file in XML format.
+		/// Saves given XML file at path in compiled format.
 		/// </summary>
 		/// <param name="filePath"></param>
 		/// <returns></returns>
@@ -252,7 +269,7 @@ namespace Fetitor
 		}
 
 		/// <summary>
-		/// Loads settings and features from .compiled file.
+		/// Loads settings and features from compiled file.
 		/// </summary>
 		/// <param name="filePath"></param>
 		private void LoadFromCompiled(string filePath)
@@ -262,7 +279,7 @@ namespace Fetitor
 		}
 
 		/// <summary>
-		/// Loads settings and features from .compiled file.
+		/// Loads settings and features from compiled file.
 		/// </summary>
 		/// <author>Yiting</author>
 		/// <param name="stream"></param>
@@ -487,18 +504,6 @@ namespace Fetitor
 			}
 		}
 
-
-
-
-
-
-
-
-
-
-
-
-
 		/// <summary>
 		/// Reads stream and returns features file in XML format.
 		/// </summary>
@@ -525,25 +530,5 @@ namespace Fetitor
 				ff.LoadFromXml(ms);
 			ff.SaveAsCompiled(compiledStream);
 		}
-	}
-
-	public class FeaturesSetting
-	{
-		public bool Development;
-		public byte Generation;
-		public string Locale = "";
-		public string Name = "";
-		public byte Season;
-		public byte Subseason;
-		public bool Test;
-	}
-
-	public class FeaturesFeature
-	{
-		public string Default = "";
-		public string Disable = "";
-		public string Enable = "";
-		public uint Hash;
-		public string Name;
 	}
 }

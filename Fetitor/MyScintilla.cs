@@ -17,29 +17,38 @@ using System.Windows.Forms;
 
 namespace Fetitor
 {
+	/// <summary>
+	/// A version of Scintilla with additional hotkeys.
+	/// </summary>
 	class MyScintilla : Scintilla
 	{
+		/// <summary>
+		/// Raised when Ctrl+S is pressed.
+		/// </summary>
 		public event EventHandler CtrlS;
+
+		/// <summary>
+		/// Raised when Ctrl+F is pressed.
+		/// </summary>
 		public event EventHandler CtrlF;
 
+		/// <summary>
+		/// Catches hotkeys and raises their events.
+		/// </summary>
+		/// <param name="msg"></param>
+		/// <param name="keyData"></param>
+		/// <returns></returns>
 		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
 		{
 			switch (keyData)
 			{
 				case Keys.Control | Keys.S:
-					{
-						var ev = this.CtrlS;
-						if (ev != null)
-							ev(this, null);
-						return true;
-					}
+					this.CtrlS?.Invoke(this, null);
+					return true;
+
 				case Keys.Control | Keys.F:
-					{
-						var ev = this.CtrlF;
-						if (ev != null)
-							ev(this, null);
-						return true;
-					}
+					this.CtrlF?.Invoke(this, null);
+					return true;
 			}
 
 			return base.ProcessCmdKey(ref msg, keyData);

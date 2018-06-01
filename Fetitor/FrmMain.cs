@@ -13,13 +13,13 @@
 
 using ScintillaNET;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
-using System.Collections.Generic;
 
 namespace Fetitor
 {
@@ -45,7 +45,7 @@ namespace Fetitor
 
 			_windowTitle = Text;
 			this.LblKnownFeatureCount.Text = "";
-			this.ToolStrip.Renderer = new MySR();
+			this.ToolStrip.Renderer = new ToolStripRendererNL();
 
 			this.UpdateSaveButtons();
 		}
@@ -166,10 +166,10 @@ namespace Fetitor
 		private void UpdateSaveButtons()
 		{
 			var enabled = (_fileChanged && !string.IsNullOrWhiteSpace(_openedFilePath));
-			this.MenuSave.Enabled = this.BtnSave.Enabled = enabled;
+			this.MnuSave.Enabled = this.BtnSave.Enabled = enabled;
 
 			var fileOpen = (_openedFilePath != null);
-			this.MenuSaveAsXml.Enabled = fileOpen;
+			this.MnuSaveAsXml.Enabled = fileOpen;
 		}
 
 		/// <summary>
