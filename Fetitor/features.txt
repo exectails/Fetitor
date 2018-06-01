@@ -9,11 +9,16 @@
 1101
 1101.1
 1102
+1201
 1201.1
+1301
 1301.0
 1302.0
 1401
 1401.0
+1403
+1501
+1504
 1601
 1603
 1806
@@ -30,10 +35,17 @@
 701
 702
 703
+704
 801
+802
+803
 901
 902
+903
+9999
+bossrush
 DummyData
+dungeonrenewal
 feature_ver
 feature50Javelin
 featureAddDice
@@ -113,7 +125,6 @@ featureGetDemiGodExpOnRebirth
 featureGiantHandBell
 featureGiantShield
 featureGiantTuba
-featureGiveNaoSoulStoneToCharacterByFreeCard
 featureGlewyasChronicle
 featureGuildEU
 featureGuildQuest
@@ -154,6 +165,7 @@ featureSkillRankLimitCancelG5S4
 featureSkillRankLimitCancelG8S4
 featureSkillRankLimitCancelMusicKnow
 featureSplinterShot
+featurestring
 featureTaiwanWeapon
 featureTaraItemUpgrade
 featureTowerCylinder
@@ -171,7 +183,6 @@ featureWeekRebirth
 featureWindBreakerSkill
 featureWineMaking
 featureXXX
-feature처리
 G0S0
 G13S1
 G14S4
@@ -209,7 +220,11 @@ gf2011HalloweenCharacterCard
 gf2011SummerCharacterCard
 gf2012JapanStarEvent
 gf2012NewUmbrellaForCharacterCard
-gf20YearsBaram_weapon_change_scroll
+gf2017GonoNet
+gf2017OverseasSmartContent
+gf2017SpacePrincePrincess
+gf2017SteamPunk
+gf20YearsBaram
 gf2qE
 gf3DaysRebirth
 gf3DInterface
@@ -218,10 +233,8 @@ gf3Ep
 gf4
 gf4E3a
 gf50Javelin
-gf5OEܝnEf5OE
 gf6AD
 gf6D
-gf7D̥
 gf8
 gf8H
 gf8Hg
@@ -256,6 +269,7 @@ gfAlchemyDischarge
 gfAliceCharaterCard
 gfAllowOnlyOneBag
 gfAlwaysGachapon
+gfan
 gfAncientTreasureChest
 gfAndrasBirthday
 gfAndrasStroyQuest
@@ -286,10 +300,10 @@ gfAutoPlayerTest
 gfAutoProduction
 gfAutumnEvent2013
 gfAviation
+gfAviationFieldExtend
 gfAvon
 gfb
 gfB
-gfb0ŠZ
 gfb130
 gfB8E
 gfBankArbeit
@@ -303,6 +317,7 @@ gfBardSongG11S2Renewal
 gfBardsongG14S3Renewal
 gfBarrier
 gfBattleBike
+gfBattleDanceSkill
 gfBattleFieldAllocMonster
 gfBattleGround
 gfBeadGachapon
@@ -317,6 +332,7 @@ gfBeginnerBenefitExpansion
 gfBeginnerChattingChannel
 gfBeginnerCommunity
 gfBelfast
+gfBeltaneMission
 gfBigSkillBar
 gfBigTradeMessage
 gfBingoGacha
@@ -356,6 +372,8 @@ gfC4Tutorial
 gfCampSharingRenewal
 gfCaptureTheFlag
 gfCaptureTheFlagRenewal
+gfCaravanJoeStrangeBox
+gfCaravanJoeStrangeBox1
 gfCarpentry
 gfCashEgoFeed
 gfCashItem
@@ -363,8 +381,12 @@ gfCashItemGift
 gfCashItemRefund
 gfCashtemDuncan
 gfCastleFreePass
+gfCastleHousingRenewal
 gfCatchingTail
 gfcg
+gfChainSlashJob
+gfChainSlashJobEvent
+gfChainSlashPR
 gfChannelSelectionRenewal
 gfCharacterCardPostProcess
 gfCharacterMakeAbusing
@@ -387,6 +409,7 @@ gfChinaMagicBook
 gfChinaPremiumPc
 gfChinaVIPShop
 gfchristmas2011
+gfChristmasDeco
 gfChronicle
 gfCircleBoreadaeBoann
 gfCircleDruidMerlin
@@ -487,8 +510,11 @@ gfEasyFortinbras
 gfEasyG14Mainstream
 gfEavanBirthday
 gfecg
+gfEchoRefine
+gfEchoStone
 gfED
 gfedora
+gfedora_c
 gfedora_h02
 gfedora_ih
 gfef
@@ -503,6 +529,8 @@ gfEgoWeaponRebalance2
 gfEHQ
 gfELD
 gfELDHalloween
+gfELDOriginalDeco
+gfELDRoseFestival
 gfElementCylinder
 gfElf
 gfElfGiantNPCMotion
@@ -625,6 +653,7 @@ gfG19DiscipleBattle
 gfG19DiscipleExtraStage
 gfG19DivineKnightSkill
 gfG19DivineKnightSkillReBalance
+gfG19DivineKnightSkillReBalence
 gfG19MainStream
 gfG19OrderQuest
 gfG19OrderQuest_start
@@ -636,6 +665,11 @@ gfG2
 gfG20DivineKnightSkill
 gfG20MainStream
 gfG20MyKnights
+gfG21AvalonRaidMission
+gfG21DiscipleTransform
+gfG21FieldOpenComplete
+gfG21FieldRaid
+gfG21MainStream
 gfG2MainStreamEasy
 gfG2Skip
 gfG3Skip
@@ -657,6 +691,7 @@ gfGetAdvancedItem
 gfGetDemiGodExpOnRebirth
 gfGetPetCreateListFromServer
 gfGiant
+gfGiant_CombatRenewal2017
 gfGiant_ThrowRenewalG12S2
 gfGiant_ThrowRenewalG14S3
 gfGiantGoldenSpiderKidRenewal
@@ -676,6 +711,7 @@ gfGoldCheckColor
 gfGoldthrow
 gfGolemWindmillRankDown
 gfGolvan
+gfGrandMasterRenewal
 gfGreenNogiCampaignS3
 gfGreenNogiCampaignS4
 gfGrimReaper
@@ -688,9 +724,13 @@ gfGuildQuest
 gfGuildRobe
 gfGuildStoneChange
 gfGuildTitle
+gfGuildWarRenewal
 gfh
 gfH
+gfhaberdasher
+gfhaberdasher_popup
 gfHackShield
+gfHairFixedDyeAmpul
 gfHalloweenevent2013
 gfHalloweenZombieInfectionEvent2011USA
 gfHalo
@@ -701,6 +741,7 @@ gfHelpBoard
 gfHelpNewbie
 gfHi
 gfHideandseekevent
+gfHideandseekevent2016
 gfHMDungeonItemAddition
 gfHomosexualmarriage
 gfHoodArmor
@@ -723,6 +764,8 @@ gfi
 gfIceFishing
 gfIceMine
 gfIE
+gfief
+gfief_mesh
 gfield
 gfiG
 gfIllustratedCollectBook
@@ -738,8 +781,10 @@ gfIRentalBagOverse
 gfIriaMiningJob
 gfIriaRebirth
 gfish
+gfish_01
 gfish_crape
 gfisher
+gfisher_feather
 gfishing2007taiwan
 gfist
 gfist_charge
@@ -778,7 +823,7 @@ gfLakeNeaghBoss
 gfLance
 gfLayoutDeed
 gfLE
-gflĚUI
+gfLevelUpIncentive
 gfliberationday
 gfLileasCFQuest
 gfLimitedEdition
@@ -787,17 +832,20 @@ gfLitePet
 gfLittleGhost
 gfLocalizedVisualKeyboard
 gfLongJavelin
+gfloor
 gfloor_01
 gfloor_02
 gfLordDungeon
 gfLordWeapon
 gfLostPeopleQuest
+gflower
 gfLowerHousingMaxTaxRates
 gfm
 gfM
 gfMabiFate
 gfMabiLand
 gfMabinogiKorea6thAnniversary
+gfMabiRZ
 gfMabiXDragonTrainningKorea
 gfMacroChecker
 gfMacroCheckerTighten
@@ -805,6 +853,7 @@ gfMagicassistancebookRepair
 gfMagicCombatRenewal
 gfMagicMotionRenewal
 gfMagicShield
+gfMagicShieldTriggerChange
 gfMailbox
 gfMailBox
 gfMailBoxLogChange
@@ -828,8 +877,8 @@ gfMarkerMyGuildStone
 gfMate
 gfMatrixAuthChina
 gfMaxLevel200
-gfƜE
 gfMembershipServiceKorea
+gfMembershipTailSlot
 gfMemoRenewal
 gfmEq
 gfMercenaryMonster
@@ -848,6 +897,7 @@ gfMiniGhostKorea
 gfMiniMapRenewal
 gfMiniPotion
 gfMirageMissileDamageUpgrade
+gfMissionSweepCoupon
 gfMonsterPot
 gfMonsterSkill
 gfMonsterSkillReading
@@ -880,6 +930,7 @@ gfNewIriaPart1
 gfNewIriaPart2
 gfNewMailNotice
 gfNewManualG5S3
+gfNewOddEyeSystem
 gfNewRabbieDungeon2016
 gfNewRabbieEasyMode
 gfNewRebirthEvent
@@ -907,6 +958,7 @@ gfNPCshapeList
 gfNuadhaSetitem
 gfo
 gfO
+gfood
 gfood_baconpotato
 gfood_biscuit
 gfood_friedshrimprice
@@ -916,6 +968,8 @@ gfOpponentEquipmentView
 gfOptionWindowRenewal1
 gfOrientalCostume
 gform
+gfOverSeasOddEye
+gfox
 gfox_muyu
 gfP
 gfP5E
@@ -972,6 +1026,7 @@ gfPhoenixPet
 gfPlayFeed
 gfPlayPaneltyChina
 gfPoison
+gfPolymorph
 gfPotionPartyMaking
 gfPotionSkillKey
 gfPowerofDagda
@@ -979,13 +1034,18 @@ gfPreminumPCRoomServiceChina
 gfPremiumComboCard
 gfPremiumLookDisable
 gfPremiumPCService
+gfPremiumPCService2016
+gfPremiumPlusPfHousing
 gfPremiumPlusService
+gfPremiumPlusServiceRenewal
 gfPremiumVIPService
 gfPreventUserFromLeaving1
 gfPrivacyWarningChattingMessage
 gfPrivateFarm
 gfPrivateFarmEvent2013
+gfPrivateFarmHousingRenewal
 gfPrivateFarmKit
+gfPrivateFarmLifeSupport
 gfPrivateFarmPondLvDown
 gfPrivateFarmRank
 gfPrivateFarmRenewal
@@ -1013,6 +1073,8 @@ gfr
 gfR
 gfRaidRegentimeRenewal
 gfRainCastingRenewal
+gframe
+gfRandomBoxPoint
 gfRangedAttackOnHorse
 gfRE3b
 gfRealTimeMessageFilter
@@ -1032,6 +1094,8 @@ gfRemoteWandRapair
 gfRemoteWandRepair
 gfRenesPlay
 gfRenewalTutorial
+gfRenttitleMeditateWeaken
+gfRepairImprovement
 gfRescueNaoCoupon
 gfReservedCharNameEvent
 gfResizeInventoryByLongTitle
@@ -1049,7 +1113,6 @@ gfRoleMotion
 gfRomanticIsland
 gfRoyalAlchemist
 gfRoyalAlchemistExp
-gfrrīǩBz
 gfRuin
 gfs
 gfS
@@ -1058,6 +1121,7 @@ gfSAOCollaboration
 gfSAOCollaborationKorea
 gfScaleformGfx
 gfScan
+gfScenarioDG
 gfScreenshotReport
 gfScytheWeaponEnhance
 gfSearchItemByPet
@@ -1105,6 +1169,7 @@ gfSkillFishing
 gfSkillMetalExtraction
 gfSkillProcessByKeyUp
 gfSkillPromotion
+gfSkillPromotionRenewal
 gfSkillrankCollectionBookG14S3
 gfSkillRankLimitCancelG5S4
 gfSkillRankLimitCancelG8S4
@@ -1118,8 +1183,10 @@ gfSpecialAction
 gfSplinterShot
 gfSSUMcontents1
 gfStaffSpecialTechnique
+gfStarRestore2017
+gfStarRestore2017_char
+gfstring
 gfSubTalentSkill
-gfSuŀ
 gfSummerVacationEvent2013USA
 gfSummonFriendRequestCoolTime
 gfSuneungFighting2014
@@ -1134,7 +1201,6 @@ gfTaiwanWeapon
 gfTalentEventJapan
 gfTalentJournal
 gfTalentRebalance
-gfTalentRebalance용
 gfTalentRenovationArchery
 gfTalentRenovationCloseCombat
 gfTalentRenovationMagic
@@ -1146,10 +1212,12 @@ gftD
 gfTerrorist
 gfTestServerRenewal
 gfTheOneWhoPriased
+gfTirCho
 gfTirCho_NPC_Renewal
 gfTowerCylinder
 gftqEN
 gfTradeAuction
+gfTradeAuctionImprove
 gfTradeCountLimit1
 gfTradeCountLimitItem
 gfTrainDragonEvent
@@ -1189,6 +1257,7 @@ gfUserCreatedDungeon
 gfUseTrueTypeFont
 gfUseUIInfoCacheFile
 gfValentine2015Japan
+gfValentine2017
 gfValentineEvent2012
 gfVehicle
 gfVerticalSync
@@ -1197,6 +1266,7 @@ gfVioletStroyQuest
 gfVIPBagTaiwan
 gfVIPService
 gfVIPServiceRenewal
+gfVisibilityOption
 gfVisualChat
 gfVisualKeyboard
 gfVisualLock
@@ -1246,9 +1316,5 @@ gfZ
 gfZE
 gfzG_2
 gfZombieWaveDefenceEvent2012
-gfϐDK
-gfΦD
-gfҟ
-gfլ
-gf처리
-해당 피처
+housing
+partyboard
