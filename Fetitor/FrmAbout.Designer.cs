@@ -70,7 +70,7 @@
 			this.LblVersion.Name = "LblVersion";
 			this.LblVersion.Size = new System.Drawing.Size(37, 13);
 			this.LblVersion.TabIndex = 17;
-			this.LblVersion.Text = "v1.0.0";
+			this.LblVersion.Text = "v1.0.1";
 			// 
 			// ImgIcon
 			// 
