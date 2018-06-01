@@ -54,6 +54,12 @@ namespace Fetitor
 		private List<FeaturesFeature> _features = new List<FeaturesFeature>();
 
 		private static Dictionary<uint, string> _featureNames = new Dictionary<uint, string>();
+		private static HashSet<string> _completeFeatureNames = new HashSet<string>();
+
+		/// <summary>
+		/// Returns the number of features names loaded.
+		/// </summary>
+		public static int FetureNameCount => _completeFeatureNames.Count;
 
 		/// <summary>
 		/// Creates new FeaturesFile.
@@ -102,6 +108,7 @@ namespace Fetitor
 					var hash = GetStringHash(name);
 
 					_featureNames[hash] = name;
+					_completeFeatureNames.Add(name);
 				}
 			}
 		}

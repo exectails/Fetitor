@@ -22,5 +22,17 @@ namespace Fetitor.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string NameSearchFolders {
+            get {
+                return ((string)(this["NameSearchFolders"]));
+            }
+            set {
+                this["NameSearchFolders"] = value;
+            }
+        }
     }
 }

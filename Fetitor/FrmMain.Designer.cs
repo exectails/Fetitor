@@ -59,6 +59,7 @@
 			this.LstFeatures = new System.Windows.Forms.ListView();
 			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.TxtFeatureFilter = new System.Windows.Forms.TextBox();
+			this.BtnUpdateFeatureNames = new System.Windows.Forms.ToolStripButton();
 			this.StatusStrip.SuspendLayout();
 			this.ToolStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.SplMain)).BeginInit();
@@ -185,7 +186,8 @@
             this.BtnUndo,
             this.BtnRedo,
             this.toolStripSeparator2,
-            this.BtnSearch});
+            this.BtnSearch,
+            this.BtnUpdateFeatureNames});
 			this.ToolStrip.Location = new System.Drawing.Point(0, 0);
 			this.ToolStrip.Name = "ToolStrip";
 			this.ToolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -343,6 +345,16 @@
 			this.TxtFeatureFilter.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtFeatureFilter_KeyUp);
 			this.TxtFeatureFilter.Leave += new System.EventHandler(this.TxtFeatureFilter_Leave);
 			// 
+			// BtnUpdateFeatureNames
+			// 
+			this.BtnUpdateFeatureNames.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.BtnUpdateFeatureNames.Image = ((System.Drawing.Image)(resources.GetObject("BtnUpdateFeatureNames.Image")));
+			this.BtnUpdateFeatureNames.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.BtnUpdateFeatureNames.Name = "BtnUpdateFeatureNames";
+			this.BtnUpdateFeatureNames.Size = new System.Drawing.Size(23, 22);
+			this.BtnUpdateFeatureNames.Text = "Update Feature Names";
+			this.BtnUpdateFeatureNames.Click += new System.EventHandler(this.BtnUpdateFeatureNames_Click);
+			// 
 			// FrmMain
 			// 
 			this.AllowDrop = true;
@@ -358,6 +370,7 @@
 			this.Name = "FrmMain";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Fetitor";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMain_FormClosing);
 			this.Load += new System.EventHandler(this.FrmMain_Load);
 			this.DragDrop += new System.Windows.Forms.DragEventHandler(this.FrmMain_DragDrop);
 			this.DragEnter += new System.Windows.Forms.DragEventHandler(this.FrmMain_DragEnter);
@@ -406,6 +419,7 @@
 		private System.Windows.Forms.Button BtnClearFilter;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
 		private System.Windows.Forms.ToolStripButton BtnSearch;
+		private System.Windows.Forms.ToolStripButton BtnUpdateFeatureNames;
 	}
 }
 

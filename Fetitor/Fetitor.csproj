@@ -73,6 +73,12 @@
     <Compile Include="FrmSearch.Designer.cs">
       <DependentUpon>FrmSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmUpdateFeatureNames.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUpdateFeatureNames.Designer.cs">
+      <DependentUpon>FrmUpdateFeatureNames.cs</DependentUpon>
+    </Compile>
     <Compile Include="MyScintilla.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -87,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSearch.resx">
       <DependentUpon>FrmSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUpdateFeatureNames.resx">
+      <DependentUpon>FrmUpdateFeatureNames.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -111,7 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="features.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icon.ico" />
   </ItemGroup>

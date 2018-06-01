@@ -11,6 +11,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using Fetitor.Properties;
 using ScintillaNET;
 using System;
 using System.Collections.Generic;
@@ -38,16 +39,23 @@ namespace Fetitor
 		{
 			this.InitializeComponent();
 			this.SetUpEditor();
-
-			var featuresPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "features.txt");
-			if (File.Exists(featuresPath))
-				FeaturesFile.LoadFeatureNames(featuresPath);
+			this.UpdateFeatureNames();
 
 			_windowTitle = this.Text;
 			this.LblKnownFeatureCount.Text = "";
 			this.ToolStrip.Renderer = new ToolStripRendererNL();
 
 			this.UpdateSaveButtons();
+		}
+
+		/// <summary>
+		/// Updates feature names list.
+		/// </summary>
+		private void UpdateFeatureNames()
+		{
+			var featuresPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "features.txt");
+			if (File.Exists(featuresPath))
+				FeaturesFile.LoadFeatureNames(featuresPath);
 		}
 
 		/// <summary>
@@ -63,6 +71,16 @@ namespace Fetitor
 				var filePath = args[1];
 				this.OpenFile(filePath);
 			}
+		}
+
+		/// <summary>
+		/// Saves settings when the form is closing.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			Settings.Default.Save();
 		}
 
 		/// <summary>
@@ -576,6 +594,19 @@ namespace Fetitor
 				_searchForm.Focus();
 
 			_searchForm.SelectSearchText();
+		}
+
+		/// <summary>
+		/// Opens form to updates feature names.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void BtnUpdateFeatureNames_Click(object sender, EventArgs e)
+		{
+			var form = new FrmUpdateFeatureNames();
+			form.ShowDialog();
+
+			this.UpdateFeatureNames();
 		}
 	}
 }
