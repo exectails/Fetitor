@@ -50,10 +50,10 @@ namespace Fetitor
 	/// </summary>
 	public class FeaturesFile
 	{
-		private List<FeaturesSetting> settings = new List<FeaturesSetting>();
-		private List<FeaturesFeature> features = new List<FeaturesFeature>();
+		private List<FeaturesSetting> _settings = new List<FeaturesSetting>();
+		private List<FeaturesFeature> _features = new List<FeaturesFeature>();
 
-		private static Dictionary<uint, string> featureNames = new Dictionary<uint, string>();
+		private static Dictionary<uint, string> _featureNames = new Dictionary<uint, string>();
 
 		/// <summary>
 		/// Creates new FeaturesFile.
@@ -101,7 +101,7 @@ namespace Fetitor
 
 					var hash = GetStringHash(name);
 
-					featureNames[hash] = name;
+					_featureNames[hash] = name;
 				}
 			}
 		}
@@ -113,8 +113,8 @@ namespace Fetitor
 		/// <returns></returns>
 		public static uint GetStringHash(string str)
 		{
-			int s = 5381;
-			foreach (char ch in str) s = s * 33 + (int)ch;
+			var s = 5381;
+			foreach (var ch in str) s = s * 33 + (int)ch;
 			return (uint)s;
 		}
 
@@ -150,7 +150,7 @@ namespace Fetitor
 						setting.Season = Convert.ToByte(settingsXml.GetAttribute("Season"));
 						setting.Subseason = Convert.ToByte(settingsXml.GetAttribute("Subseason"));
 
-						settings.Add(setting);
+						_settings.Add(setting);
 					}
 				}
 
@@ -166,7 +166,7 @@ namespace Fetitor
 						feature.Enable = featuresXml.GetAttribute("Enable");
 						feature.Disable = featuresXml.GetAttribute("Disable");
 
-						features.Add(feature);
+						_features.Add(feature);
 					}
 				}
 			}
@@ -234,7 +234,7 @@ namespace Fetitor
 					writer.WriteStartElement("FeatureList");
 					{
 						writer.WriteStartElement("Settings");
-						foreach (var setting in settings)
+						foreach (var setting in _settings)
 						{
 							writer.WriteStartElement("Setting");
 							writer.WriteAttributeString("Name", setting.Name);
@@ -249,7 +249,7 @@ namespace Fetitor
 						writer.WriteEndElement();
 
 						writer.WriteStartElement("Features");
-						foreach (var feature in features)
+						foreach (var feature in _features)
 						{
 							writer.WriteStartElement("Feature");
 							writer.WriteAttributeString("Hash", feature.Hash.ToString("x8"));
@@ -292,7 +292,7 @@ namespace Fetitor
 				throw new EndOfStreamException();
 
 			var settingCount = BitConverter.ToUInt16(buffer, 0);
-			for (int i = 0; i < settingCount; i++)
+			for (var i = 0; i < settingCount; i++)
 			{
 				var setting = new FeaturesSetting();
 
@@ -306,7 +306,7 @@ namespace Fetitor
 				if (stream.Read(buffer, 0, num) != num)
 					throw new EndOfStreamException();
 
-				for (int k = 0; k < num; k++)
+				for (var k = 0; k < num; k++)
 					buffer[k] = (byte)(buffer[k] ^ 0x80);
 
 				setting.Name = Encoding.UTF8.GetString(buffer, 0, num);
@@ -321,7 +321,7 @@ namespace Fetitor
 				if (stream.Read(buffer, 0, num) != num)
 					throw new EndOfStreamException();
 
-				for (int m = 0; m < num; m++)
+				for (var m = 0; m < num; m++)
 					buffer[m] = (byte)(buffer[m] ^ 0x80);
 
 				setting.Locale = Encoding.UTF8.GetString(buffer, 0, num);
@@ -335,14 +335,14 @@ namespace Fetitor
 				setting.Test = (buffer[2] & 1) != 0;
 				setting.Development = (buffer[2] & 2) != 0;
 
-				settings.Add(setting);
+				_settings.Add(setting);
 			}
 
 			if (stream.Read(buffer, 0, 2) != 2)
 				throw new EndOfStreamException();
 
 			var featureCount = BitConverter.ToUInt16(buffer, 0);
-			for (int j = 0; j < featureCount; j++)
+			for (var j = 0; j < featureCount; j++)
 			{
 				var feature = new FeaturesFeature();
 
@@ -350,7 +350,7 @@ namespace Fetitor
 					throw new EndOfStreamException();
 
 				feature.Hash = BitConverter.ToUInt32(buffer, 0);
-				feature.Name = featureNames.ContainsKey(feature.Hash) ? featureNames[feature.Hash] : "?";
+				feature.Name = _featureNames.ContainsKey(feature.Hash) ? _featureNames[feature.Hash] : "?";
 
 				if (stream.Read(buffer, 0, 2) != 2)
 					throw new EndOfStreamException();
@@ -364,7 +364,7 @@ namespace Fetitor
 					if (stream.Read(buffer, 0, num) != num)
 						throw new EndOfStreamException();
 
-					for (int n = 0; n < num; n++)
+					for (var n = 0; n < num; n++)
 						buffer[n] = (byte)(buffer[n] ^ 0x80);
 
 					feature.Default = Encoding.UTF8.GetString(buffer, 0, num);
@@ -382,7 +382,7 @@ namespace Fetitor
 					if (stream.Read(buffer, 0, num) != num)
 						throw new EndOfStreamException();
 
-					for (int num9 = 0; num9 < num; num9++)
+					for (var num9 = 0; num9 < num; num9++)
 						buffer[num9] = (byte)(buffer[num9] ^ 0x80);
 
 					feature.Enable = Encoding.UTF8.GetString(buffer, 0, num);
@@ -400,13 +400,13 @@ namespace Fetitor
 					if (stream.Read(buffer, 0, num) != num)
 						throw new EndOfStreamException();
 
-					for (int num10 = 0; num10 < num; num10++)
+					for (var num10 = 0; num10 < num; num10++)
 						buffer[num10] = (byte)(buffer[num10] ^ 0x80);
 
 					feature.Disable = Encoding.UTF8.GetString(buffer, 0, num);
 				}
 
-				features.Add(feature);
+				_features.Add(feature);
 			}
 		}
 
@@ -427,8 +427,8 @@ namespace Fetitor
 		/// <param name="stream"></param>
 		private void SaveAsCompiled(Stream stream)
 		{
-			stream.Write(BitConverter.GetBytes(settings.Count), 0, 2);
-			foreach (var setting in settings)
+			stream.Write(BitConverter.GetBytes(_settings.Count), 0, 2);
+			foreach (var setting in _settings)
 			{
 				if (string.IsNullOrEmpty(setting.Name))
 					throw new NotSupportedException();
@@ -437,13 +437,13 @@ namespace Fetitor
 					throw new NotSupportedException();
 
 				var nameBuffer = Encoding.UTF8.GetBytes(setting.Name);
-				for (int num11 = 0; num11 < nameBuffer.Length; num11++)
+				for (var num11 = 0; num11 < nameBuffer.Length; num11++)
 					nameBuffer[num11] = (byte)(nameBuffer[num11] ^ 0x80);
 				stream.Write(BitConverter.GetBytes(nameBuffer.Length), 0, 2);
 				stream.Write(nameBuffer, 0, nameBuffer.Length);
 
 				var localeBuffer = Encoding.UTF8.GetBytes(setting.Locale);
-				for (int num12 = 0; num12 < localeBuffer.Length; num12++)
+				for (var num12 = 0; num12 < localeBuffer.Length; num12++)
 					localeBuffer[num12] = (byte)(localeBuffer[num12] ^ 0x80);
 				stream.Write(BitConverter.GetBytes(localeBuffer.Length), 0, 2);
 				stream.Write(localeBuffer, 0, localeBuffer.Length);
@@ -456,8 +456,8 @@ namespace Fetitor
 				stream.Write(genBuffer, 0, 3);
 			}
 
-			stream.Write(BitConverter.GetBytes(features.Count), 0, 2);
-			foreach (var feature in features)
+			stream.Write(BitConverter.GetBytes(_features.Count), 0, 2);
+			foreach (var feature in _features)
 			{
 				stream.Write(BitConverter.GetBytes(feature.Hash), 0, 4);
 				if (string.IsNullOrEmpty(feature.Default))
@@ -468,7 +468,7 @@ namespace Fetitor
 				else
 				{
 					var defaultBuffer = Encoding.UTF8.GetBytes(feature.Default);
-					for (int num13 = 0; num13 < defaultBuffer.Length; num13++)
+					for (var num13 = 0; num13 < defaultBuffer.Length; num13++)
 						defaultBuffer[num13] = (byte)(defaultBuffer[num13] ^ 0x80);
 					stream.Write(BitConverter.GetBytes(defaultBuffer.Length), 0, 2);
 					stream.Write(defaultBuffer, 0, defaultBuffer.Length);
@@ -482,7 +482,7 @@ namespace Fetitor
 				else
 				{
 					var enableBuffer = Encoding.UTF8.GetBytes(feature.Enable);
-					for (int num14 = 0; num14 < enableBuffer.Length; num14++)
+					for (var num14 = 0; num14 < enableBuffer.Length; num14++)
 						enableBuffer[num14] = (byte)(enableBuffer[num14] ^ 0x80);
 					stream.Write(BitConverter.GetBytes(enableBuffer.Length), 0, 2);
 					stream.Write(enableBuffer, 0, enableBuffer.Length);
@@ -496,7 +496,7 @@ namespace Fetitor
 				else
 				{
 					var disableBuffer = Encoding.UTF8.GetBytes(feature.Disable);
-					for (int num15 = 0; num15 < disableBuffer.Length; num15++)
+					for (var num15 = 0; num15 < disableBuffer.Length; num15++)
 						disableBuffer[num15] = (byte)(disableBuffer[num15] ^ 0x80);
 					stream.Write(BitConverter.GetBytes(disableBuffer.Length), 0, 2);
 					stream.Write(disableBuffer, 0, disableBuffer.Length);

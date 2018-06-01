@@ -43,7 +43,7 @@ namespace Fetitor
 			if (File.Exists(featuresPath))
 				FeaturesFile.LoadFeatureNames(featuresPath);
 
-			_windowTitle = Text;
+			_windowTitle = this.Text;
 			this.LblKnownFeatureCount.Text = "";
 			this.ToolStrip.Renderer = new ToolStripRendererNL();
 
@@ -222,8 +222,7 @@ namespace Fetitor
 			if (selectedItem == null || selectedItem.Tag == null)
 				return;
 
-			var indices = selectedItem.Tag as Tuple<int, int>;
-			if (indices == null)
+			if (!(selectedItem.Tag is Tuple<int, int> indices))
 				return;
 
 			this.TxtEditor.SetSelection(indices.Item1, indices.Item2);
