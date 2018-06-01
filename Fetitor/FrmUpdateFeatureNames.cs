@@ -57,6 +57,7 @@ namespace Fetitor
 		private void FrmUpdateFeatureNames_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			_closing = true;
+			Settings.Default.NameSearchFolders = this.TxtFolders.Text;
 		}
 
 		/// <summary>
@@ -87,13 +88,12 @@ namespace Fetitor
 		/// <param name="e"></param>
 		private void BtnSearch_Click(object sender, EventArgs e)
 		{
-			Settings.Default.NameSearchFolders = this.TxtFolders.Text;
-
 			var folderPaths = this.TxtFolders.Lines;
 			var includeCurrent = this.ChkIncludeCurrent.Checked;
 
 			this.BtnSearch.Enabled = false;
 			this.BtnSave.Enabled = false;
+			this.GrpFolders.Enabled = false;
 			this.ProgressBar.Value = 0;
 
 			Task.Run(() =>
@@ -145,6 +145,7 @@ namespace Fetitor
 				{
 					this.TxtResults.Text = sb.ToString();
 					this.BtnSearch.Enabled = true;
+					this.GrpFolders.Enabled = true;
 					this.ProgressBar.Value = this.ProgressBar.Maximum;
 
 					if (features.Any())
@@ -155,11 +156,11 @@ namespace Fetitor
 				var newCount = (totalCount - FeaturesFile.FetureNameCount);
 
 				if (newCount > 0)
-					MessageBox.Show($"Found {totalCount} potential feature names, {newCount} more than in the features.txt.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					MessageBox.Show(this, $"Found {totalCount} potential feature names, {newCount} more than in the features.txt.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				else if (newCount == 0)
-					MessageBox.Show($"Found {totalCount} potential feature names, no new ones were found.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					MessageBox.Show(this, $"Found {totalCount} potential feature names, no new ones were found.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				else
-					MessageBox.Show($"Found {totalCount} potential feature names.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					MessageBox.Show(this, $"Found {totalCount} potential feature names.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			});
 		}
 
@@ -181,7 +182,7 @@ namespace Fetitor
 
 				if (!Directory.Exists(path))
 				{
-					MessageBox.Show($"Directory '{path}' not found.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					MessageBox.Show(this, $"Directory '{path}' not found.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 					continue;
 				}
 
