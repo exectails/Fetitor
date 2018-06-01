@@ -71,6 +71,17 @@ namespace Fetitor
 				var filePath = args[1];
 				this.OpenFile(filePath);
 			}
+
+			if (Settings.Default.WindowMaximized)
+			{
+				this.WindowState = FormWindowState.Maximized;
+			}
+			else if (Settings.Default.WindowLocation.X != -1 || Settings.Default.WindowLocation.Y != -1)
+			{
+				this.WindowState = FormWindowState.Normal;
+				this.Location = Settings.Default.WindowLocation;
+				this.Size = Settings.Default.WindowSize;
+			}
 		}
 
 		/// <summary>
@@ -80,6 +91,13 @@ namespace Fetitor
 		/// <param name="e"></param>
 		private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
 		{
+			Settings.Default.WindowMaximized = (this.WindowState == FormWindowState.Maximized);
+			if (this.WindowState == FormWindowState.Normal)
+			{
+				Settings.Default.WindowLocation = this.Location;
+				Settings.Default.WindowSize = this.Size;
+			}
+
 			Settings.Default.Save();
 		}
 
