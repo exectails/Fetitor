@@ -36,7 +36,7 @@
 			this.LblName = new System.Windows.Forms.Label();
 			this.BtnOK = new System.Windows.Forms.Button();
 			this.ImgGitHub = new System.Windows.Forms.PictureBox();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.ImgPatreon = new System.Windows.Forms.PictureBox();
 			this.GrpScintilla = new System.Windows.Forms.GroupBox();
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.GrpLicense = new System.Windows.Forms.GroupBox();
@@ -45,7 +45,7 @@
 			this.PnlHeader.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.ImgIcon)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ImgGitHub)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ImgPatreon)).BeginInit();
 			this.GrpScintilla.SuspendLayout();
 			this.GrpLicense.SuspendLayout();
 			this.SuspendLayout();
@@ -119,20 +119,20 @@
 			this.ToolTip.SetToolTip(this.ImgGitHub, "https://github.com/exectails");
 			this.ImgGitHub.Click += new System.EventHandler(this.LinkImage_Click);
 			// 
-			// pictureBox1
+			// ImgPatreon
 			// 
-			this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-			this.pictureBox1.Location = new System.Drawing.Point(12, 509);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(189, 32);
-			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-			this.pictureBox1.TabIndex = 20;
-			this.pictureBox1.TabStop = false;
-			this.pictureBox1.Tag = "https://www.patreon.com/exectails";
-			this.ToolTip.SetToolTip(this.pictureBox1, "https://www.patreon.com/exectails");
-			this.pictureBox1.Click += new System.EventHandler(this.LinkImage_Click);
+			this.ImgPatreon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.ImgPatreon.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.ImgPatreon.Image = ((System.Drawing.Image)(resources.GetObject("ImgPatreon.Image")));
+			this.ImgPatreon.Location = new System.Drawing.Point(12, 509);
+			this.ImgPatreon.Name = "ImgPatreon";
+			this.ImgPatreon.Size = new System.Drawing.Size(189, 32);
+			this.ImgPatreon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+			this.ImgPatreon.TabIndex = 20;
+			this.ImgPatreon.TabStop = false;
+			this.ImgPatreon.Tag = "https://www.patreon.com/exectails";
+			this.ToolTip.SetToolTip(this.ImgPatreon, "https://www.patreon.com/exectails");
+			this.ImgPatreon.Click += new System.EventHandler(this.LinkImage_Click);
 			// 
 			// GrpScintilla
 			// 
@@ -198,7 +198,7 @@
 			this.ClientSize = new System.Drawing.Size(483, 553);
 			this.Controls.Add(this.GrpScintilla);
 			this.Controls.Add(this.GrpLicense);
-			this.Controls.Add(this.pictureBox1);
+			this.Controls.Add(this.ImgPatreon);
 			this.Controls.Add(this.ImgGitHub);
 			this.Controls.Add(this.BtnOK);
 			this.Controls.Add(this.PnlHeader);
@@ -214,7 +214,7 @@
 			this.PnlHeader.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.ImgIcon)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.ImgGitHub)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ImgPatreon)).EndInit();
 			this.GrpScintilla.ResumeLayout(false);
 			this.GrpScintilla.PerformLayout();
 			this.GrpLicense.ResumeLayout(false);
@@ -231,7 +231,7 @@
 		private System.Windows.Forms.Label LblName;
 		private System.Windows.Forms.Button BtnOK;
 		private System.Windows.Forms.PictureBox ImgGitHub;
-		private System.Windows.Forms.PictureBox pictureBox1;
+		private System.Windows.Forms.PictureBox ImgPatreon;
 		private System.Windows.Forms.GroupBox GrpScintilla;
 		private System.Windows.Forms.TextBox textBox2;
 		private System.Windows.Forms.GroupBox GrpLicense;
