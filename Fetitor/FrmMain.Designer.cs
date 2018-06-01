@@ -97,6 +97,7 @@
 			this.MnuSave.Index = 1;
 			this.MnuSave.Shortcut = System.Windows.Forms.Shortcut.CtrlS;
 			this.MnuSave.Text = "&Save";
+			this.MnuSave.Click += new System.EventHandler(this.BtnSave_Click);
 			// 
 			// MnuSaveAsXml
 			// 
