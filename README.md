@@ -12,6 +12,11 @@ Features
 - Editing Mabinogi's .xml.compiled files.
 - Jump list to find specific features more quickly.
 
+Preview
+-----------------------------------------------------------------------------
+
+![](preview.png)
+
 Links
 ------------------------------
 * GitHub: https://github.com/exectails/Fetitor
