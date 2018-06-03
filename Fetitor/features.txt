@@ -221,6 +221,7 @@ gf2011SummerCharacterCard
 gf2012JapanStarEvent
 gf2012NewUmbrellaForCharacterCard
 gf2017GonoNet
+gf2017NewAttendance
 gf2017OverseasSmartContent
 gf2017SpacePrincePrincess
 gf2017SteamPunk
@@ -387,9 +388,11 @@ gfcg
 gfChainSlashJob
 gfChainSlashJobEvent
 gfChainSlashPR
+gfChangeItemSkin
 gfChannelSelectionRenewal
 gfCharacterCardPostProcess
 gfCharacterMakeAbusing
+gfCharacterNameMaxCount8
 gfCharacterSystem0200
 gfCharacterViewRenewal
 gfCharStyleCoupon
@@ -598,6 +601,7 @@ gfFreeRebirth
 gfFreeRebirthWeekly
 gfFreestyleJam
 gfFreestyleJamwithCorple
+gfFreeToLimitService
 gfFriendAnnounce
 gfFrozenBlastSkill
 gfFullmetalAlchemistKorea
@@ -666,10 +670,12 @@ gfG20DivineKnightSkill
 gfG20MainStream
 gfG20MyKnights
 gfG21AvalonRaidMission
+gfG21DiscipleBattle
 gfG21DiscipleTransform
 gfG21FieldOpenComplete
 gfG21FieldRaid
 gfG21MainStream
+gfG21MainStreamS2
 gfG2MainStreamEasy
 gfG2Skip
 gfG3Skip
@@ -732,6 +738,7 @@ gfhaberdasher_popup
 gfHackShield
 gfHairFixedDyeAmpul
 gfHalloweenevent2013
+gfHalloweeneventKorea2017
 gfHalloweenZombieInfectionEvent2011USA
 gfHalo
 gfHansUpgrade
@@ -825,6 +832,7 @@ gfLayoutDeed
 gfLE
 gfLevelUpIncentive
 gfliberationday
+gfLifeReputation
 gfLileasCFQuest
 gfLimitedEdition
 gfLionDashSkill
@@ -1042,6 +1050,7 @@ gfPremiumVIPService
 gfPreventUserFromLeaving1
 gfPrivacyWarningChattingMessage
 gfPrivateFarm
+gfPrivateFarmChannelBind
 gfPrivateFarmEvent2013
 gfPrivateFarmHousingRenewal
 gfPrivateFarmKit
@@ -1100,6 +1109,7 @@ gfRescueNaoCoupon
 gfReservedCharNameEvent
 gfResizeInventoryByLongTitle
 gfResizeOppenentInventoryByLongTitle
+gfResourceStatusMax2500
 gfRestoreDropItemInDynamicRegion
 gfRestrictGuild
 gfReturnItemsByCutsceneLeave
@@ -1177,6 +1187,7 @@ gfSkillRankLimitCancelMusicKnow
 gfSkillTypeRebalance
 gfSmuggler
 gfSnowFightEvent2012
+gfSnowManPet
 gfSnowStorm
 gfSocialMotion
 gfSpecialAction
@@ -1248,6 +1259,7 @@ gfUladDungeonRenewal
 gfUmbrellaItem
 gfUnlimitPetCount
 gfUnlimitRank
+gfUnlockRank1LivingSkill
 gfUnrestrictChatOnPetSummon
 gfUsablePremiumLookToBeginner
 gfUSALauncher
