@@ -29,7 +29,7 @@ namespace Fetitor
 	public partial class FrmUpdateFeatureNames : Form
 	{
 		private readonly static string[] FileExtensions = new[] { ".xml", ".txt", ".data" };
-		private readonly static string FeaturesListPath = Path.GetFullPath("features.txt");
+		private readonly static string FeaturesListPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "features.txt");
 		private readonly static Regex GfRegex = new Regex(@"(gf[a-zA-Z][\w\-]+)", RegexOptions.Compiled);
 		private readonly static Regex FeatureStrRegex = new Regex(@"(feature[a-zA-Z][\w\-]+)", RegexOptions.Compiled);
 		private readonly static Regex FeatureAttr1Regex = new Regex(@"feature\s*=\s*""([^""]+)""", RegexOptions.Compiled | RegexOptions.IgnoreCase);
@@ -150,17 +150,17 @@ namespace Fetitor
 
 					if (features.Any())
 						this.BtnSave.Enabled = true;
+
+					var totalCount = features.Count;
+					var newCount = (totalCount - FeaturesFile.FetureNameCount);
+
+					if (newCount > 0)
+						MessageBox.Show(this, $"Found {totalCount} potential feature names, {newCount} more than in the features.txt.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					else if (newCount == 0)
+						MessageBox.Show(this, $"Found {totalCount} potential feature names, no new ones were found.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					else
+						MessageBox.Show(this, $"Found {totalCount} potential feature names.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				});
-
-				var totalCount = features.Count;
-				var newCount = (totalCount - FeaturesFile.FetureNameCount);
-
-				if (newCount > 0)
-					MessageBox.Show(this, $"Found {totalCount} potential feature names, {newCount} more than in the features.txt.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				else if (newCount == 0)
-					MessageBox.Show(this, $"Found {totalCount} potential feature names, no new ones were found.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				else
-					MessageBox.Show(this, $"Found {totalCount} potential feature names.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			});
 		}
 
@@ -182,7 +182,10 @@ namespace Fetitor
 
 				if (!Directory.Exists(path))
 				{
-					MessageBox.Show(this, $"Directory '{path}' not found.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					this.Invoke((MethodInvoker)delegate
+					{
+						MessageBox.Show(this, $"Directory '{path}' not found.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					});
 					continue;
 				}
 
