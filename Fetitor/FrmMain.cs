@@ -626,5 +626,26 @@ namespace Fetitor
 
 			this.UpdateFeatureNames();
 		}
+
+		/// <summary>
+		/// Enables the feature in the line the cursor is in.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void MnuEnableSelected_Click(object sender, EventArgs e)
+		{
+			var pos = this.TxtEditor.CurrentPosition;
+			var lineIndex = this.TxtEditor.LineFromPosition(pos);
+			var line = this.TxtEditor.Lines[lineIndex];
+			var start = line.Position;
+			var end = line.EndPosition;
+			var text = line.Text;
+
+			text = Regex.Replace(text, @"<Feature\s+Hash\s*=\s*""([^""]*)""\s+Name\s*=\s*""([^""]*)""\s+Default\s*=\s*""([^""]*)""\s+Enable\s*=\s*""([^""]*)""\s+Disable\s*=\s*""([^""]*)""", @"<Feature Hash=""$1"" Name=""$2"" Default=""G0S0"" Enable="""" Disable=""""");
+
+			this.TxtEditor.SetSelection(end, start);
+			this.TxtEditor.ReplaceSelection(text);
+			this.TxtEditor.GotoPosition(pos);
+		}
 	}
 }

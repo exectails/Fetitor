@@ -66,6 +66,8 @@
 			this.LstFeatures = new System.Windows.Forms.ListView();
 			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.TxtFeatureFilter = new System.Windows.Forms.TextBox();
+			this.MnuEnableSelected = new System.Windows.Forms.MenuItem();
+			this.menuItem6 = new System.Windows.Forms.MenuItem();
 			this.StatusStrip.SuspendLayout();
 			this.ToolStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.SplMain)).BeginInit();
@@ -133,7 +135,9 @@
             this.MnuRedo,
             this.menuItem9,
             this.MnuSearch,
-            this.MnuUpdateFeatures});
+            this.MnuUpdateFeatures,
+            this.menuItem6,
+            this.MnuEnableSelected});
 			this.menuItem3.Text = "Edit";
 			// 
 			// MnuUndo
@@ -405,6 +409,18 @@
 			this.TxtFeatureFilter.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtFeatureFilter_KeyUp);
 			this.TxtFeatureFilter.Leave += new System.EventHandler(this.TxtFeatureFilter_Leave);
 			// 
+			// MnuEnableSelected
+			// 
+			this.MnuEnableSelected.Index = 6;
+			this.MnuEnableSelected.Shortcut = System.Windows.Forms.Shortcut.CtrlE;
+			this.MnuEnableSelected.Text = "Enable Current Line\'s Feature";
+			this.MnuEnableSelected.Click += new System.EventHandler(this.MnuEnableSelected_Click);
+			// 
+			// menuItem6
+			// 
+			this.menuItem6.Index = 5;
+			this.menuItem6.Text = "-";
+			// 
 			// FrmMain
 			// 
 			this.AllowDrop = true;
@@ -476,6 +492,8 @@
 		private System.Windows.Forms.MenuItem menuItem9;
 		private System.Windows.Forms.MenuItem MnuSearch;
 		private System.Windows.Forms.MenuItem MnuUpdateFeatures;
+		private System.Windows.Forms.MenuItem menuItem6;
+		private System.Windows.Forms.MenuItem MnuEnableSelected;
 	}
 }
 
