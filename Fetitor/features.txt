@@ -6,6 +6,7 @@
 1001
 1002
 101
+1044
 1101
 1101.1
 1102
@@ -188,7 +189,11 @@ G13S1
 G14S4
 G15S1
 G16S1
+G18S1
+G19S1
 G1S1
+G20S1
+G20S2
 G3S4
 G4S1
 G5S1
@@ -257,6 +262,7 @@ gfAdvancedItemRenewal
 gfAdvancedSearchItemByPet
 gfAdvertiseBundleDestroy
 gfAfreecaTV
+gfAgainEvent
 gfAgeRenewal
 gfagf
 gfail
@@ -283,8 +289,11 @@ gfAntHell
 gfAntiMacroCaptcha
 gfAprilFoolsDay2012
 gfAprilFoolsDay2015Japan
+gfAprilFoolsDay2016Korea
 gfArbeitFilter
+gfarcadecoilldungeon
 gfArcadeCoillDungeon
+gfarcadepeacadungeon
 gfArcadePeacaDungeon
 gfArenaCoin
 gfArenaImprovement
@@ -450,6 +459,7 @@ gfCommercePartnerKor
 gfCommercePartnerTai
 gfCommerceRenewal2014
 gfCommerceRobberEnhance
+gfcommonevent
 gfCompositionImprovement
 gfConstellationEvent
 gfContinentMoveAction
@@ -580,10 +590,12 @@ gfFavorite
 gfFeature
 gfFemaleGiant
 gfff
+gfFieldQuestSystem
 gfFighterJob
 gfFighterStory
 gfFinalShotSkill
 gfFindingCaravanJoeEvent
+gfFindTreasureBox
 gfFiodhHighDungeon
 gfFirstHumanUlad
 gfFishingBag
@@ -598,6 +610,7 @@ gfFreeCardConditionRenewal
 gfFreeCastle
 gfFreePVP
 gfFreeRebirth
+gfFreeRebirthEXP
 gfFreeRebirthWeekly
 gfFreestyleJam
 gfFreestyleJamwithCorple
@@ -737,6 +750,7 @@ gfhaberdasher
 gfhaberdasher_popup
 gfHackShield
 gfHairFixedDyeAmpul
+gfHalloweenBossEvent2012
 gfHalloweenevent2013
 gfHalloweeneventKorea2017
 gfHalloweenZombieInfectionEvent2011USA
@@ -797,6 +811,7 @@ gfist
 gfist_charge
 gfist_charge02
 gfistuse
+gfItemAnnounceSystem
 gfItemBagPriceDown
 gfItemDropQuality
 gfItemEnhance
@@ -807,6 +822,7 @@ gfix
 gfJ
 gfJapan7thPlayeEvent
 gfJapan8thEvent
+gfJapan8thEventRenewal
 gfJapanItemShopTest
 gfJapanPremiumPackRenewal
 gfJobForNewbie
@@ -882,6 +898,7 @@ gfManaForming
 gfManaProtector
 gfManaShield
 gfMarkerMyGuildStone
+gfMasterPet
 gfMate
 gfMatrixAuthChina
 gfMaxLevel200
@@ -896,6 +913,7 @@ gfMerrows
 gfMetalware
 gfMetalwareCommerce
 gfMetalwareRealview
+gfMetalWareSetHead
 gfMetalwareTime
 gfMetalwareToolCommerce
 gfMiku
@@ -927,6 +945,7 @@ gfNaoSupportRenewal
 gfNewBagJapan
 gfNewbieGuideMovie
 gfNewbieMovie
+gfNewChapterPreparty
 gfNewCharacterColor2011
 gfNewCharacterRenewal
 gfNewCharacterRenewal2
@@ -1080,6 +1099,7 @@ gfQuestViewRenewal
 gfQuickEnterWorld
 gfr
 gfR
+gfragmentofdisciple
 gfRaidRegentimeRenewal
 gfRainCastingRenewal
 gframe
@@ -1126,6 +1146,8 @@ gfRoyalAlchemistExp
 gfRuin
 gfs
 gfS
+gfSamhain2015P2
+gfSamhainP2
 gfSandStormSkill
 gfSAOCollaboration
 gfSAOCollaborationKorea
@@ -1153,6 +1175,7 @@ gfShadowMissionBoard
 gfShadowMissionCameraButton
 gfShadowMissionCreatorCheck
 gfShadowSpawnBoxMove
+gfShamalaStoryS2
 gfShanaRenewal
 gfShanaTaiwan
 gfShapeShifterJob
@@ -1175,6 +1198,7 @@ gfSkillCompose
 gfSkillCooking
 gfSkillCoolDownTime
 gfSkillEnhanceSet
+gfSkillExpRateBoostEvent
 gfSkillFishing
 gfSkillMetalExtraction
 gfSkillProcessByKeyUp
@@ -1186,6 +1210,7 @@ gfSkillRankLimitCancelG8S4
 gfSkillRankLimitCancelMusicKnow
 gfSkillTypeRebalance
 gfSmuggler
+gfSnowFightEvent
 gfSnowFightEvent2012
 gfSnowManPet
 gfSnowStorm
@@ -1223,6 +1248,7 @@ gftD
 gfTerrorist
 gfTestServerRenewal
 gfTheOneWhoPriased
+gfThreeDayRebirth
 gfTirCho
 gfTirCho_NPC_Renewal
 gfTowerCylinder
@@ -1266,6 +1292,7 @@ gfUSALauncher
 gfUseItemBomb2
 gfUseOldChattingUSA
 gfUserCreatedDungeon
+gfUserOrientation
 gfUseTrueTypeFont
 gfUseUIInfoCacheFile
 gfValentine2015Japan
@@ -1306,6 +1333,7 @@ gfWindBreakerSkill
 gfWindowPositionReset
 gfWine
 gfWineMaking
+gfWinterCamp2014
 gfWiseLog
 gfWMVMovieSupport
 gfWolfCoatCharaterCard
