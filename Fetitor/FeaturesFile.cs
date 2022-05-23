@@ -41,8 +41,8 @@ namespace Fetitor
 		public string Default = "";
 		public string Disable = "";
 		public string Enable = "";
-		public string Unk1 = null;
-		public string Unk2 = null;
+		public string StartTime = null;
+		public string EndTime = null;
 		public uint Hash;
 		public string Name;
 	}
@@ -179,12 +179,12 @@ namespace Fetitor
 						feature.Enable = featuresXml.GetAttribute("Enable");
 						feature.Disable = featuresXml.GetAttribute("Disable");
 
-						var unk1 = featuresXml.GetAttribute("Unk1");
-						var unk2 = featuresXml.GetAttribute("Unk2");
-						if (unk1 != null || unk2 != null)
+						var startTime = featuresXml.GetAttribute("StartTime");
+						var endTime = featuresXml.GetAttribute("EndTime");
+						if (startTime != null || endTime != null)
 						{
-							feature.Unk1 = unk1;
-							feature.Unk2 = unk2;
+							feature.StartTime = startTime;
+							feature.EndTime = endTime;
 						}
 
 						_features.Add(feature);
@@ -279,10 +279,10 @@ namespace Fetitor
 							writer.WriteAttributeString("Enable", feature.Enable);
 							writer.WriteAttributeString("Disable", feature.Disable);
 
-							if (feature.Unk1 != null || feature.Unk2 != null)
+							if (feature.StartTime != null || feature.EndTime != null)
 							{
-								writer.WriteAttributeString("Unk1", feature.Unk1);
-								writer.WriteAttributeString("Unk2", feature.Unk2);
+								writer.WriteAttributeString("StartTime", feature.StartTime);
+								writer.WriteAttributeString("EndTime", feature.EndTime);
 							}
 
 							writer.WriteEndElement();
@@ -357,11 +357,11 @@ namespace Fetitor
 				feature.Disable = this.ReadEncryptedLpString(stream);
 
 				// Determine version
-				// In May 2022 they added two new strings here. Their exact
-				// purpose is currently unknown, but they need to be parsed.
-				// Since they're empty for the first feature, the next four
-				// bytes will be 0 if we're reading the new format, otherwise
-				// they would be the next hash.
+				// In May 2022 they added two new strings here, which appear
+				// to represent a start and an end time. Since these strings
+				// are empty for the first feature, the next four bytes will
+				// be 0 if we're reading the new format, otherwise they would
+				// be the next hash.
 				if (j == 0)
 				{
 					if (stream.Read(buffer, 0, 4) != 4)
@@ -376,8 +376,8 @@ namespace Fetitor
 
 				if (_formatVersion > 0)
 				{
-					feature.Unk1 = this.ReadEncryptedLpString(stream);
-					feature.Unk2 = this.ReadEncryptedLpString(stream);
+					feature.StartTime = this.ReadEncryptedLpString(stream);
+					feature.EndTime = this.ReadEncryptedLpString(stream);
 				}
 
 				_features.Add(feature);
@@ -505,30 +505,30 @@ namespace Fetitor
 					stream.Write(disableBuffer, 0, disableBuffer.Length);
 				}
 
-				if (feature.Unk1 != null || feature.Unk2 != null)
+				if (feature.StartTime != null || feature.EndTime != null)
 				{
-					if (string.IsNullOrEmpty(feature.Unk1))
+					if (string.IsNullOrEmpty(feature.StartTime))
 					{
 						stream.WriteByte(0);
 						stream.WriteByte(0);
 					}
 					else
 					{
-						var textBuffer = Encoding.UTF8.GetBytes(feature.Unk1);
+						var textBuffer = Encoding.UTF8.GetBytes(feature.StartTime);
 						for (var num15 = 0; num15 < textBuffer.Length; num15++)
 							textBuffer[num15] = (byte)(textBuffer[num15] ^ 0x80);
 						stream.Write(BitConverter.GetBytes(textBuffer.Length), 0, 2);
 						stream.Write(textBuffer, 0, textBuffer.Length);
 					}
 
-					if (string.IsNullOrEmpty(feature.Unk2))
+					if (string.IsNullOrEmpty(feature.EndTime))
 					{
 						stream.WriteByte(0);
 						stream.WriteByte(0);
 					}
 					else
 					{
-						var textBuffer = Encoding.UTF8.GetBytes(feature.Unk2);
+						var textBuffer = Encoding.UTF8.GetBytes(feature.EndTime);
 						for (var num15 = 0; num15 < textBuffer.Length; num15++)
 							textBuffer[num15] = (byte)(textBuffer[num15] ^ 0x80);
 						stream.Write(BitConverter.GetBytes(textBuffer.Length), 0, 2);
