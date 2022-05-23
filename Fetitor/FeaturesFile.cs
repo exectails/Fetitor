@@ -50,11 +50,13 @@ namespace Fetitor
 	/// </summary>
 	public class FeaturesFile
 	{
-		private List<FeaturesSetting> _settings = new List<FeaturesSetting>();
-		private List<FeaturesFeature> _features = new List<FeaturesFeature>();
+		private readonly byte[] _strBuffer = new byte[0x100];
 
-		private static Dictionary<uint, string> _featureNames = new Dictionary<uint, string>();
-		private static HashSet<string> _completeFeatureNames = new HashSet<string>();
+		private readonly List<FeaturesSetting> _settings = new List<FeaturesSetting>();
+		private readonly List<FeaturesFeature> _features = new List<FeaturesFeature>();
+
+		private static readonly Dictionary<uint, string> _featureNames = new Dictionary<uint, string>();
+		private static readonly HashSet<string> _completeFeatureNames = new HashSet<string>();
 
 		/// <summary>
 		/// Returns the number of features names loaded.
@@ -293,7 +295,6 @@ namespace Fetitor
 		private void LoadFromCompiled(Stream stream)
 		{
 			var buffer = new byte[0x100];
-			var num = 0;
 
 			if (stream.Read(buffer, 0, 2) != 2)
 				throw new EndOfStreamException();
@@ -303,35 +304,8 @@ namespace Fetitor
 			{
 				var setting = new FeaturesSetting();
 
-				if (stream.Read(buffer, 0, 2) != 2)
-					throw new EndOfStreamException();
-
-				num = BitConverter.ToUInt16(buffer, 0);
-				if ((num <= 0) || (num > 0x100))
-					throw new NotSupportedException();
-
-				if (stream.Read(buffer, 0, num) != num)
-					throw new EndOfStreamException();
-
-				for (var k = 0; k < num; k++)
-					buffer[k] = (byte)(buffer[k] ^ 0x80);
-
-				setting.Name = Encoding.UTF8.GetString(buffer, 0, num);
-
-				if (stream.Read(buffer, 0, 2) != 2)
-					throw new EndOfStreamException();
-
-				num = BitConverter.ToUInt16(buffer, 0);
-				if (num <= 0 || num > 0x100)
-					throw new NotSupportedException();
-
-				if (stream.Read(buffer, 0, num) != num)
-					throw new EndOfStreamException();
-
-				for (var m = 0; m < num; m++)
-					buffer[m] = (byte)(buffer[m] ^ 0x80);
-
-				setting.Locale = Encoding.UTF8.GetString(buffer, 0, num);
+				setting.Name = this.ReadEncryptedLpString(stream);
+				setting.Locale = this.ReadEncryptedLpString(stream);
 
 				if (stream.Read(buffer, 0, 3) != 3)
 					throw new EndOfStreamException();
@@ -359,62 +333,41 @@ namespace Fetitor
 				feature.Hash = BitConverter.ToUInt32(buffer, 0);
 				feature.Name = _featureNames.ContainsKey(feature.Hash) ? _featureNames[feature.Hash] : "?";
 
-				if (stream.Read(buffer, 0, 2) != 2)
-					throw new EndOfStreamException();
-
-				num = BitConverter.ToUInt16(buffer, 0);
-				if (num > 0x100)
-					throw new NotSupportedException();
-
-				if (num > 0)
-				{
-					if (stream.Read(buffer, 0, num) != num)
-						throw new EndOfStreamException();
-
-					for (var n = 0; n < num; n++)
-						buffer[n] = (byte)(buffer[n] ^ 0x80);
-
-					feature.Default = Encoding.UTF8.GetString(buffer, 0, num);
-				}
-
-				if (stream.Read(buffer, 0, 2) != 2)
-					throw new EndOfStreamException();
-
-				num = BitConverter.ToUInt16(buffer, 0);
-				if (num > 0x100)
-					throw new NotSupportedException();
-
-				if (num > 0)
-				{
-					if (stream.Read(buffer, 0, num) != num)
-						throw new EndOfStreamException();
-
-					for (var num9 = 0; num9 < num; num9++)
-						buffer[num9] = (byte)(buffer[num9] ^ 0x80);
-
-					feature.Enable = Encoding.UTF8.GetString(buffer, 0, num);
-				}
-
-				if (stream.Read(buffer, 0, 2) != 2)
-					throw new EndOfStreamException();
-
-				num = BitConverter.ToUInt16(buffer, 0);
-				if (num > 0x100)
-					throw new NotSupportedException();
-
-				if (num > 0)
-				{
-					if (stream.Read(buffer, 0, num) != num)
-						throw new EndOfStreamException();
-
-					for (var num10 = 0; num10 < num; num10++)
-						buffer[num10] = (byte)(buffer[num10] ^ 0x80);
-
-					feature.Disable = Encoding.UTF8.GetString(buffer, 0, num);
-				}
+				feature.Default = this.ReadEncryptedLpString(stream);
+				feature.Enable = this.ReadEncryptedLpString(stream);
+				feature.Disable = this.ReadEncryptedLpString(stream);
 
 				_features.Add(feature);
 			}
+		}
+
+		/// <summary>
+		/// Reads an encrypted, length-prefixed string from the stream
+		/// and returns it.
+		/// </summary>
+		/// <param name="stream"></param>
+		/// <returns></returns>
+		/// <exception cref="EndOfStreamException"></exception>
+		/// <exception cref="NotSupportedException"></exception>
+		private string ReadEncryptedLpString(Stream stream)
+		{
+			if (stream.Read(_strBuffer, 0, 2) != 2)
+				throw new EndOfStreamException();
+
+			var length = BitConverter.ToUInt16(_strBuffer, 0);
+			if (length > _strBuffer.Length)
+				throw new NotSupportedException();
+
+			if (length <= 0)
+				return "";
+
+			if (stream.Read(_strBuffer, 0, length) != length)
+				throw new EndOfStreamException();
+
+			for (var i = 0; i < length; i++)
+				_strBuffer[i] = (byte)(_strBuffer[i] ^ 0x80);
+
+			return Encoding.UTF8.GetString(_strBuffer, 0, length);
 		}
 
 		/// <summary>
