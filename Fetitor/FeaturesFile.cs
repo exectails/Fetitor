@@ -183,8 +183,8 @@ namespace Fetitor
 						var unk2 = featuresXml.GetAttribute("Unk2");
 						if (unk1 != null || unk2 != null)
 						{
-							feature.Unk1 = featuresXml.GetAttribute("Unk1");
-							feature.Unk2 = featuresXml.GetAttribute("Unk2");
+							feature.Unk1 = unk1;
+							feature.Unk2 = unk2;
 						}
 
 						_features.Add(feature);
@@ -279,7 +279,7 @@ namespace Fetitor
 							writer.WriteAttributeString("Enable", feature.Enable);
 							writer.WriteAttributeString("Disable", feature.Disable);
 
-							if (string.IsNullOrWhiteSpace(feature.Unk1) || string.IsNullOrWhiteSpace(feature.Unk2))
+							if (feature.Unk1 != null || feature.Unk2 != null)
 							{
 								writer.WriteAttributeString("Unk1", feature.Unk1);
 								writer.WriteAttributeString("Unk2", feature.Unk2);
