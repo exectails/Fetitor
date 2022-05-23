@@ -41,6 +41,8 @@ namespace Fetitor
 		public string Default = "";
 		public string Disable = "";
 		public string Enable = "";
+		public string Unk1 = null;
+		public string Unk2 = null;
 		public uint Hash;
 		public string Name;
 	}
@@ -50,6 +52,8 @@ namespace Fetitor
 	/// </summary>
 	public class FeaturesFile
 	{
+		private int _formatVersion = 0;
+
 		private readonly byte[] _strBuffer = new byte[0x100];
 
 		private readonly List<FeaturesSetting> _settings = new List<FeaturesSetting>();
@@ -337,6 +341,30 @@ namespace Fetitor
 				feature.Enable = this.ReadEncryptedLpString(stream);
 				feature.Disable = this.ReadEncryptedLpString(stream);
 
+				// Determine version
+				// In May 2022 they added two new strings here. Their exact
+				// purpose is currently unknown, but they need to be parsed.
+				// Since they're empty for the first feature, the next four
+				// bytes will be 0 if we're reading the new format, otherwise
+				// they would be the next hash.
+				if (j == 0)
+				{
+					if (stream.Read(buffer, 0, 4) != 4)
+						throw new EndOfStreamException();
+
+					if (BitConverter.ToUInt32(buffer, 0) == 0)
+						_formatVersion = 1;
+
+					// Rewind, so we can read the bytes again
+					stream.Seek(-4, SeekOrigin.Current);
+				}
+
+				if (_formatVersion > 0)
+				{
+					feature.Unk1 = this.ReadEncryptedLpString(stream);
+					feature.Unk2 = this.ReadEncryptedLpString(stream);
+				}
+
 				_features.Add(feature);
 			}
 		}
@@ -460,6 +488,37 @@ namespace Fetitor
 						disableBuffer[num15] = (byte)(disableBuffer[num15] ^ 0x80);
 					stream.Write(BitConverter.GetBytes(disableBuffer.Length), 0, 2);
 					stream.Write(disableBuffer, 0, disableBuffer.Length);
+				}
+
+				if (_formatVersion > 0)
+				{
+					if (string.IsNullOrEmpty(feature.Unk1))
+					{
+						stream.WriteByte(0);
+						stream.WriteByte(0);
+					}
+					else
+					{
+						var textBuffer = Encoding.UTF8.GetBytes(feature.Unk1);
+						for (var num15 = 0; num15 < textBuffer.Length; num15++)
+							textBuffer[num15] = (byte)(textBuffer[num15] ^ 0x80);
+						stream.Write(BitConverter.GetBytes(textBuffer.Length), 0, 2);
+						stream.Write(textBuffer, 0, textBuffer.Length);
+					}
+
+					if (string.IsNullOrEmpty(feature.Unk2))
+					{
+						stream.WriteByte(0);
+						stream.WriteByte(0);
+					}
+					else
+					{
+						var textBuffer = Encoding.UTF8.GetBytes(feature.Unk2);
+						for (var num15 = 0; num15 < textBuffer.Length; num15++)
+							textBuffer[num15] = (byte)(textBuffer[num15] ^ 0x80);
+						stream.Write(BitConverter.GetBytes(textBuffer.Length), 0, 2);
+						stream.Write(textBuffer, 0, textBuffer.Length);
+					}
 				}
 			}
 		}
