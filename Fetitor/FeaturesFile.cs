@@ -179,6 +179,14 @@ namespace Fetitor
 						feature.Enable = featuresXml.GetAttribute("Enable");
 						feature.Disable = featuresXml.GetAttribute("Disable");
 
+						var unk1 = featuresXml.GetAttribute("Unk1");
+						var unk2 = featuresXml.GetAttribute("Unk2");
+						if (unk1 != null || unk2 != null)
+						{
+							feature.Unk1 = featuresXml.GetAttribute("Unk1");
+							feature.Unk2 = featuresXml.GetAttribute("Unk2");
+						}
+
 						_features.Add(feature);
 					}
 				}
@@ -270,6 +278,13 @@ namespace Fetitor
 							writer.WriteAttributeString("Default", feature.Default);
 							writer.WriteAttributeString("Enable", feature.Enable);
 							writer.WriteAttributeString("Disable", feature.Disable);
+
+							if (string.IsNullOrWhiteSpace(feature.Unk1) || string.IsNullOrWhiteSpace(feature.Unk2))
+							{
+								writer.WriteAttributeString("Unk1", feature.Unk1);
+								writer.WriteAttributeString("Unk2", feature.Unk2);
+							}
+
 							writer.WriteEndElement();
 						}
 						writer.WriteEndElement();
@@ -490,7 +505,7 @@ namespace Fetitor
 					stream.Write(disableBuffer, 0, disableBuffer.Length);
 				}
 
-				if (_formatVersion > 0)
+				if (feature.Unk1 != null || feature.Unk2 != null)
 				{
 					if (string.IsNullOrEmpty(feature.Unk1))
 					{
